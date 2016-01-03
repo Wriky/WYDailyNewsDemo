@@ -1,0 +1,51 @@
+//
+//  YYManager+MainViewInfo.m
+//  YYDailyNewsDemo
+//
+//  Created by REiFON-MAC on 15/12/28.
+//  Copyright © 2015年 L. All rights reserved.
+//
+
+#import "YYManager+MainViewInfo.h"
+#import "YYManager+MainViewInfo.h"
+
+@implementation YYManager (MainViewInfo)
+
++ (void)yy_getMainViewNewsWithField:(NSString *)fieldTxt
+                            success:(GetMainViewInfoSuccessBlock)success
+                            failure:(yy_reqFailureBlock)failure{
+  
+    [YYManager yy_reqWithMethod:YYRequestGET urlStr:fieldTxt params:nil class:NSClassFromString(@"YYLatestNewsBO") success:^(id data) {
+        
+        success(data);
+    } failure:^(YYError *error) {
+        failure(error);
+    }];
+}
+
++ (void)yy_getNewsDetailWithID:(NSString *)newsId
+                      success:(GetNewsDetailSuccessBlock)success
+                      failure:(yy_reqFailureBlock)failure{
+    [YYManager yy_reqWithMethod:YYRequestGET urlStr:newsId params:nil class:NSClassFromString(@"YYDetailNewsBO") success:^(id data) {
+
+        success(data);
+    } failure:^(YYError *error) {
+        failure(error);
+    }];
+
+}
+
++ (void)yy_getPreviousNewsWithDate:(NSString *)dateStr
+                           success:(GetMainViewInfoSuccessBlock)success
+                           failure:(yy_reqFailureBlock)failure{
+    NSString *appendStr = [NSString stringWithFormat:@"before/%@",dateStr];
+    [YYManager yy_reqWithMethod:YYRequestGET urlStr:appendStr params:nil class:NSClassFromString(@"YYLatestNewsBO") success:^(id data) {
+        success(data);
+    } failure:^(YYError *error) {
+        failure(error);
+    }];
+}
+
+
+
+@end
