@@ -24,6 +24,7 @@
 		C949381C1C30FEE200ABC6D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C949381B1C30FEE200ABC6D4 /* Assets.xcassets */; };
 		C9AFF9A21C3A065B0006C453 /* YYLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AFF9A11C3A065B0006C453 /* YYLoadingView.m */; };
 		C9AFF9A41C3A07A80006C453 /* LoadingAnimation.gif in Resources */ = {isa = PBXBuildFile; fileRef = C9AFF9A31C3A07A80006C453 /* LoadingAnimation.gif */; };
+		C9AFF9A71C3A4A1A0006C453 /* YYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AFF9A61C3A4A1A0006C453 /* YYRefreshView.m */; };
 		C9C18F341C31020800E73B12 /* YYToolKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F331C31020800E73B12 /* YYToolKit.m */; };
 		C9C18F3B1C310A3900E73B12 /* YYHttpMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F3A1C310A3900E73B12 /* YYHttpMgr.m */; };
 		C9C18F3E1C310A7100E73B12 /* YYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F3D1C310A7100E73B12 /* YYManager.m */; };
@@ -75,6 +76,8 @@
 		C9AFF9A01C3A065B0006C453 /* YYLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLoadingView.h; sourceTree = "<group>"; };
 		C9AFF9A11C3A065B0006C453 /* YYLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYLoadingView.m; sourceTree = "<group>"; };
 		C9AFF9A31C3A07A80006C453 /* LoadingAnimation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LoadingAnimation.gif; sourceTree = "<group>"; };
+		C9AFF9A51C3A4A1A0006C453 /* YYRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYRefreshView.h; sourceTree = "<group>"; };
+		C9AFF9A61C3A4A1A0006C453 /* YYRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYRefreshView.m; sourceTree = "<group>"; };
 		C9C18F2C1C3100D000E73B12 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C9C18F321C31020800E73B12 /* YYToolKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYToolKit.h; sourceTree = "<group>"; };
 		C9C18F331C31020800E73B12 /* YYToolKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYToolKit.m; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 				C9D3753E1C322AA400A1CA0B /* YYRefreshFooterView.m */,
 				C9AFF9A01C3A065B0006C453 /* YYLoadingView.h */,
 				C9AFF9A11C3A065B0006C453 /* YYLoadingView.m */,
+				C9AFF9A51C3A4A1A0006C453 /* YYRefreshView.h */,
+				C9AFF9A61C3A4A1A0006C453 /* YYRefreshView.m */,
 				C9AFF9A31C3A07A80006C453 /* LoadingAnimation.gif */,
 			);
 			name = BaseView;
@@ -447,6 +452,7 @@
 			files = (
 				C9C18F451C31167000E73B12 /* UIImage+ImageEffects.m in Sources */,
 				C9C18F651C313A5000E73B12 /* YYMainViewCell.m in Sources */,
+				C9AFF9A71C3A4A1A0006C453 /* YYRefreshView.m in Sources */,
 				C9C18F3B1C310A3900E73B12 /* YYHttpMgr.m in Sources */,
 				7BF845B61C341EA800A3F885 /* YYTopperView.m in Sources */,
 				7BF9A26C1C316CA900DAFF9F /* NJKWebViewProgress.m in Sources */,

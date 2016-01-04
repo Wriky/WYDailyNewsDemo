@@ -15,6 +15,7 @@
 #import "YYRefreshFooterView.h"
 #import "YYBannerView.h"
 #import "YYLoadingView.h"
+#import "YYRefreshView.h"
 
 #define kLimitOffsetY sizeForDevices(165, 165, 200, 220)
 
@@ -25,21 +26,24 @@
     NSMutableArray *tableNewsArr;
     NSMutableArray *scrollNewsArr;
     UIView  *_fakeNavBar;//假的导航
-     UILabel *_navTitleLab;
+    UILabel *_navTitleLab;
     NSUInteger indexF;
     NSString *currentDateStr;
     NSString *beforeDateStr;
-     MJRefreshAutoNormalFooter *footer;
+    MJRefreshAutoNormalFooter *footer;
     YYBannerView *bannerView;
     NSMutableArray *newsMutableArr;
+    BOOL isLoading;
 }
-@property (nonatomic,strong) YYLoadingView *loadingView;//加载视图
+@property (nonatomic, strong)YYLoadingView *loadingView; //加载视图
+@property (nonatomic, strong)YYRefreshView *refreshView;
 @end
 
 @implementation YYMainViewController
 
 #pragma mark - Data
 - (void)requestLatestNewsData{
+    isLoading = YES;
      [YYManager yy_getMainViewNewsWithField:@"latest" success:^(YYLatestNewsBO *newsBO) {
          [_loadingView dismissLoadingView];
          _loadingView = nil;
@@ -52,6 +56,9 @@
         
          [mainTableView reloadData];
          [mainTableView.mj_header endRefreshing];
+         isLoading = NO;
+         [_refreshView stopAnimation];
+
     } failure:^(YYError *error) {
     }];
 }
@@ -99,14 +106,18 @@
     _fakeNavBar.alpha = 0.0;
     [self.view addSubview:_fakeNavBar];
     
-    _navTitleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, ScreenWidth, 44)];
+    _navTitleLab = [[UILabel alloc]init];
     _navTitleLab.backgroundColor = [UIColor clearColor];
     _navTitleLab.textAlignment = NSTextAlignmentCenter;
     _navTitleLab.font = FontOfSize(17);
     _navTitleLab.textColor = LightColor_1;
     _navTitleLab.text = @"今日热闻";
+    [_navTitleLab sizeToFit];
+    [_navTitleLab setCenter:CGPointMake(self.view.centerX, 38.f)];
     [self.view addSubview:_navTitleLab];
     
+    _refreshView = [[YYRefreshView alloc] initWithFrame:CGRectMake(_navTitleLab.left-20.f, _navTitleLab.centerY-10.f, 20.f, 20.f)];
+    [self.view addSubview:_refreshView];
 }
 
 - (YYLoadingView *)loadingView{
@@ -256,6 +267,18 @@
         }
         
         if (offSetY<=0&&offSetY>=-80) {
+            if (-offSetY <= 60) {
+                if (!isLoading) {
+                   [_refreshView redrawFromProgress:-offSetY/60];
+                }else{
+                   [_refreshView redrawFromProgress:0];
+                }
+            }
+            if(isLoading && !scrollView.isDragging){
+                [_refreshView redrawFromProgress:0];
+                [_refreshView startAnimation];
+               
+            }
             
             bannerView.frame = CGRectMake(0, -40-offSetY/2, ScreenWidth, 260-offSetY/2);
             [bannerView updateSubViewsOriginY:offSetY];
@@ -263,6 +286,7 @@
         }else if(offSetY<-80){
             mainTableView.contentOffset = CGPointMake(0.f, -80.f);
         }else if(offSetY <= 300) {
+            [_refreshView redrawFromProgress:0];
             bannerView.frame = CGRectMake(0, -40-offSetY, ScreenWidth, 260);
         }
     }
