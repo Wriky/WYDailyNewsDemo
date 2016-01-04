@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.10)
   - MJExtension (3.0.8)
   - MJRefresh (3.0.8)
   - SDWebImage (3.7.3):
@@ -28,12 +29,14 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - FLAnimatedImage (~> 1.0.7)
   - MJExtension
   - MJRefresh
   - SDWebImage (~> 3.7)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
   MJExtension: 12d2875959b4a0f936ae86b22a1eb6b0251c50ba
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84

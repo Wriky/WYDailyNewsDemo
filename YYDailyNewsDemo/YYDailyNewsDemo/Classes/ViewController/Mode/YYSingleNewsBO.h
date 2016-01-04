@@ -10,7 +10,8 @@
 
 @interface YYSingleNewsBO : NSObject
 
-@property (nonatomic, copy) NSArray *imagesUrl;
+@property (nonatomic, copy) NSArray *imagesUrl; //新闻列表
+@property (nonatomic, copy) NSString *imageUrl; //轮播图
 @property (nonatomic, copy) NSString *newsType;
 @property (nonatomic, copy) NSString *newsId;
 @property (nonatomic, copy) NSString *ga_prefix;

@@ -12,10 +12,9 @@
 #import "YYDateCell.h"
 #import "XPWebViewController.h"
 #import "YYWebViewController.h"
-#import "YYScrollNewsBO.h"
 #import "YYRefreshFooterView.h"
 #import "YYBannerView.h"
-#import "YRActivityIndicator.h"
+#import "YYLoadingView.h"
 
 #define kLimitOffsetY sizeForDevices(165, 165, 200, 220)
 
@@ -33,16 +32,17 @@
      MJRefreshAutoNormalFooter *footer;
     YYBannerView *bannerView;
     NSMutableArray *newsMutableArr;
-    YRActivityIndicator *_activityIndicator;
 }
+@property (nonatomic,strong) YYLoadingView *loadingView;//加载视图
 @end
 
 @implementation YYMainViewController
 
 #pragma mark - Data
 - (void)requestLatestNewsData{
-     [_activityIndicator startAnimating];
      [YYManager yy_getMainViewNewsWithField:@"latest" success:^(YYLatestNewsBO *newsBO) {
+         [_loadingView dismissLoadingView];
+         _loadingView = nil;
          latesNewsBO = newsBO;
          tableNewsArr = [[NSMutableArray alloc] init];
          [tableNewsArr addObjectsFromArray:latesNewsBO.storiesArray];
@@ -52,7 +52,6 @@
         
          [mainTableView reloadData];
          [mainTableView.mj_header endRefreshing];
-         [_activityIndicator stopAnimating];
     } failure:^(YYError *error) {
     }];
 }
@@ -74,8 +73,8 @@
 - (void)constructScrollData{
     newsMutableArr = [NSMutableArray new];
     [newsMutableArr addObjectsFromArray:latesNewsBO.topStoriesArray];
-    YYScrollNewsBO *firstBO = [latesNewsBO.topStoriesArray firstObject];
-    YYScrollNewsBO *lastBO = [latesNewsBO.topStoriesArray lastObject];
+    YYSingleNewsBO *firstBO = [latesNewsBO.topStoriesArray firstObject];
+    YYSingleNewsBO *lastBO = [latesNewsBO.topStoriesArray lastObject];
     [newsMutableArr addObject:firstBO];
     [newsMutableArr insertObject:lastBO atIndex:0];
      bannerView.topStories = newsMutableArr;
@@ -108,6 +107,15 @@
     _navTitleLab.text = @"今日热闻";
     [self.view addSubview:_navTitleLab];
     
+}
+
+- (YYLoadingView *)loadingView{
+    
+    if (!_loadingView) {
+        _loadingView = [[YYLoadingView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    }
+    
+    return _loadingView;
 }
 
 - (void)addCarousView{
@@ -144,13 +152,6 @@
 #pragma mark - View action
 - (void)initCircleProgress{
     
-    _activityIndicator = [[YRActivityIndicator alloc] initWithFrame:CGRectMake(0, 0, 120, 120)];
-    _activityIndicator.hidesWhenStopped = YES;
-    _activityIndicator.itemColor = StandardColor_1;
-    CGPoint newCenter = self.view.center;
-    newCenter.y -= 32;
-    _activityIndicator.center = newCenter;
-    [self.view addSubview:_activityIndicator];
     
 }
 
@@ -269,7 +270,7 @@
 
 #pragma mark - YYBannerViewDelegate
 - (void)didSelectItemWithTag:(NSInteger)tag{
-    YYSingleNewsBO *singleBO = scrollNewsArr[tag - 100];
+    YYSingleNewsBO *singleBO = newsMutableArr[tag - 100];
     YYWebViewController *webView = [[YYWebViewController alloc] init];
     webView.singleNewsBO = singleBO;
     [self.navigationController pushViewController:webView animated:YES];
@@ -281,6 +282,7 @@
     
     [super viewDidLoad];
     self.navBarTitle = @"今日热闻";
+   
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
     
@@ -293,7 +295,7 @@
     [self navigationBarView];
     [self addHeader];
    
-   
+    [self.view addSubview:self.loadingView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

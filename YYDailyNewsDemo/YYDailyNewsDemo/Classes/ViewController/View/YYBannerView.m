@@ -8,7 +8,7 @@
 
 #import "YYBannerView.h"
 #import "YYTopperView.h"
-#import "YYScrollNewsBO.h"
+#import "YYSingleNewsBO.h"
 
 @interface YYBannerView()<UIScrollViewDelegate>
 
@@ -55,7 +55,7 @@
     _pageControl.currentPage = 0;
     for (int i = 0 ; i < topStories.count; i++) {
         YYTopperView *tsv = [_scrollView viewWithTag:(100+i)];
-        YYScrollNewsBO *newsBO = topStories[i];
+        YYSingleNewsBO *newsBO = topStories[i];
         [tsv.imageView yy_setImageWithUrlString:newsBO.imageUrl placeholderImage: Image( @"tags_selected")];
         NSAttributedString *attStr = [[NSAttributedString alloc] initWithString:newsBO.newsTitle attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:21],NSForegroundColorAttributeName:[UIColor whiteColor]}];
         CGSize size =  [attStr boundingRectWithSize:CGSizeMake(ScreenWidth-30, 200) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;

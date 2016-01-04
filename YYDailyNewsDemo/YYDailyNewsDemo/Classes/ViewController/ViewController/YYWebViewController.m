@@ -9,7 +9,7 @@
 #import "YYWebViewController.h"
 #import "YYManager+MainViewInfo.h"
 #import "YYBottomBarView.h"
-
+#import "YYLoadingView.h"
 
 @interface YYWebViewController ()<UIWebViewDelegate, YYBottomBarDelegate, UIScrollViewDelegate>
 {
@@ -22,14 +22,15 @@
 @property (nonatomic, strong)UIView *headerView;
 @property (nonatomic, strong)UILabel *titleLab;
 @property (nonatomic, strong)UILabel *imgSourceLab;
-
+@property (nonatomic,strong) YYLoadingView *loadingView;//加载视图
 @end
 
 @implementation YYWebViewController
 #pragma mark - Data
 - (void)loadHtmlData{
     [YYManager yy_getNewsDetailWithID:_singleNewsBO.newsId success:^(YYDetailNewsBO *detailNews) {
-        
+        [_loadingView dismissLoadingView];
+        _loadingView = nil;
         detailNewsBO = detailNews;
 
         [self reloadSubViews];
@@ -78,6 +79,15 @@
     bottomBar.frame = CGRectMake(0, ScreenHeight - 50.f, ScreenWidth, 50.f);
     bottomBar.delegate = self;
     [self.view addSubview:bottomBar];
+}
+
+- (YYLoadingView *)loadingView{
+    
+    if (!_loadingView) {
+        _loadingView = [[YYLoadingView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    }
+    
+    return _loadingView;
 }
 
 #pragma mark - View action
@@ -159,7 +169,7 @@
     [self loadHtmlData];
     [self addSubViews];
     
-   
+     [self.view addSubview:self.loadingView];
 
 }
 

@@ -24,7 +24,7 @@
     
     return @{
              @"storiesArray":[YYSingleNewsBO class],
-             @"topStoriesArray":[YYScrollNewsBO class],
+             @"topStoriesArray":[YYSingleNewsBO class],
              };
 }
 

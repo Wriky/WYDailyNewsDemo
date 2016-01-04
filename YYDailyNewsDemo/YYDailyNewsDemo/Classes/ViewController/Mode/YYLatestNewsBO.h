@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "YYSingleNewsBO.h"
-#import "YYScrollNewsBO.h"
 
 @interface YYLatestNewsBO : NSObject
 

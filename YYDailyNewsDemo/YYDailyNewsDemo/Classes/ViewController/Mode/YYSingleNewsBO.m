@@ -15,6 +15,7 @@
     return @{
              
              @"imagesUrl":@"images",
+             @"imageUrl":@"image",
              @"newsType":@"type",
              @"newsId":@"id",
              @"ga_prefix":@"ga_prefix",
