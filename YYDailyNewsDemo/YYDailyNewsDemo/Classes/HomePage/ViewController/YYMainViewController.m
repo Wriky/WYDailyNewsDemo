@@ -23,7 +23,6 @@
     UITableView *mainTableView;
     YYLatestNewsBO *latesNewsBO;
     NSMutableArray *tableNewsArr;
-    NSMutableArray *scrollNewsArr;
     UIView  *_fakeNavBar;//假的导航
     UILabel *_navTitleLab;
     NSUInteger indexF;
@@ -42,12 +41,11 @@
 #pragma mark - Data
 - (void)requestLatestNewsData{
     isLoading = YES;
-     [YYManager yy_getMainViewNewsWithField:@"latest" success:^(YYLatestNewsBO *newsBO) {
+     [YYManager yy_getMainViewNewsWithField:@"latest" Success:^(YYLatestNewsBO *newsBO) {
   
          latesNewsBO = newsBO;
          tableNewsArr = [[NSMutableArray alloc] init];
          [tableNewsArr addObjectsFromArray:latesNewsBO.storiesArray];
-         scrollNewsArr = latesNewsBO.topStoriesArray;
          beforeDateStr = latesNewsBO.date;
          
          [self addTopView];
@@ -59,20 +57,20 @@
          
          DELAYEXECUTE(1.f, [_refreshView stopAnimation];);
 
-    } failure:^(YYError *error) {
+    } Failure:^(YYError *error) {
     }];
 }
 
 - (void)reloadMoreData{
     
-    [YYManager yy_getPreviousNewsWithDate:beforeDateStr success:^(YYLatestNewsBO *newsBO) {
+    [YYManager yy_getPreviousNewsWithDate:beforeDateStr Success:^(YYLatestNewsBO *newsBO) {
        [tableNewsArr addObject:newsBO.date];
        [tableNewsArr addObjectsFromArray:newsBO.storiesArray];
         
         [mainTableView reloadData];
         [mainTableView.mj_footer endRefreshing];
         beforeDateStr = newsBO.date;
-    } failure:^(YYError *error) {
+    } Failure:^(YYError *error) {
         
     }];
 }
@@ -118,7 +116,7 @@
     autoLoopView = [[YYAutoLoopView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, AdjustF(200.f))];
     autoLoopView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     autoLoopView.contentMode = UIViewContentModeScaleAspectFill;
-    autoLoopView.banners = scrollNewsArr;
+    autoLoopView.banners = latesNewsBO.topStoriesArray;
     autoLoopView.clickAutoLoopCallBackBlock = ^(YYSingleNewsBO *bannerNews){
         
         YYWebViewController *webView = [[YYWebViewController alloc] init];
@@ -126,9 +124,6 @@
         [weakSelf.navigationController pushViewController:webView animated:YES];
     };
     [mainTableView setTableHeaderView:autoLoopView];
-    
-    [scrollNewsArr removeAllObjects];
-    
 }
 
 - (YYLoadingView *)loadingView{

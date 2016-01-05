@@ -17,16 +17,17 @@ typedef void(^GetNewsDetailSuccessBlock)(YYDetailNewsBO *);
 
 @interface YYManager (MainViewInfo)
 
+
 + (void)yy_getMainViewNewsWithField:(NSString *)fieldTxt
-                            success:(GetMainViewInfoSuccessBlock)success
-                            failure:(yy_reqFailureBlock)failure;
+                            Success:(GetMainViewInfoSuccessBlock)success
+                            Failure:(yy_reqFailureBlock)failure;
 
 + (void)yy_getNewsDetailWithID:(NSString *)newsId
-                      success:(GetNewsDetailSuccessBlock)success
-                      failure:(yy_reqFailureBlock)failure;
+                      Success:(GetNewsDetailSuccessBlock)success
+                      Failure:(yy_reqFailureBlock)failure;
 
 + (void)yy_getPreviousNewsWithDate:(NSString *)dateStr
-                           success:(GetMainViewInfoSuccessBlock)success
-                           failure:(yy_reqFailureBlock)failure;
+                           Success:(GetMainViewInfoSuccessBlock)success
+                           Failure:(yy_reqFailureBlock)failure;
 
 @end

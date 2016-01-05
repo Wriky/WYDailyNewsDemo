@@ -60,6 +60,8 @@
 
 - (void)startAnimation {
     [_indicatorView startAnimating];
+    _whiteCircleLayer.opacity = 0.f;
+    _grayCircleLayer.opacity = 0.f;
 }
 
 - (void)stopAnimation {

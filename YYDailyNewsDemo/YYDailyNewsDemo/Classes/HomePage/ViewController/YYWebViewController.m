@@ -28,14 +28,14 @@
 @implementation YYWebViewController
 #pragma mark - Data
 - (void)loadHtmlData{
-    [YYManager yy_getNewsDetailWithID:_singleNewsBO.newsId success:^(YYDetailNewsBO *detailNews) {
+    [YYManager yy_getNewsDetailWithID:_singleNewsBO.newsId Success:^(YYDetailNewsBO *detailNews) {
         [_loadingView dismissLoadingView];
         _loadingView = nil;
         detailNewsBO = detailNews;
 
         [self reloadSubViews];
      
-    } failure:^(YYError *error) {
+    } Failure:^(YYError *error) {
         
     }];
 }
@@ -92,7 +92,7 @@
 
 #pragma mark - View action
 - (void)reloadSubViews{
-    [_imageView yy_setImageWithUrlString:detailNewsBO.imageUrl placeholderImage:Image(@"backgroundImage")];
+    [_imageView yy_setImageWithUrlString:detailNewsBO.imageUrl placeholderImage:Image(@"tags_selected")];
     NSDictionary *attributesDic = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:21],NSForegroundColorAttributeName:[UIColor whiteColor]};
     CGSize size = [detailNewsBO.newsTitle boundingRectWithSize:CGSizeMake(KScreenWidth-30, 60) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:attributesDic context:nil].size;
     

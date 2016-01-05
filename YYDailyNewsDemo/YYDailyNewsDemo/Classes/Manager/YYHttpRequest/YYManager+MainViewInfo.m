@@ -12,8 +12,8 @@
 @implementation YYManager (MainViewInfo)
 
 + (void)yy_getMainViewNewsWithField:(NSString *)fieldTxt
-                            success:(GetMainViewInfoSuccessBlock)success
-                            failure:(yy_reqFailureBlock)failure{
+                            Success:(GetMainViewInfoSuccessBlock)success
+                            Failure:(yy_reqFailureBlock)failure{
   
     [YYManager yy_reqWithMethod:YYRequestGET urlStr:fieldTxt params:nil class:NSClassFromString(@"YYLatestNewsBO") success:^(id data) {
         
@@ -24,8 +24,8 @@
 }
 
 + (void)yy_getNewsDetailWithID:(NSString *)newsId
-                      success:(GetNewsDetailSuccessBlock)success
-                      failure:(yy_reqFailureBlock)failure{
+                      Success:(GetNewsDetailSuccessBlock)success
+                      Failure:(yy_reqFailureBlock)failure{
     [YYManager yy_reqWithMethod:YYRequestGET urlStr:newsId params:nil class:NSClassFromString(@"YYDetailNewsBO") success:^(id data) {
 
         success(data);
@@ -36,8 +36,8 @@
 }
 
 + (void)yy_getPreviousNewsWithDate:(NSString *)dateStr
-                           success:(GetMainViewInfoSuccessBlock)success
-                           failure:(yy_reqFailureBlock)failure{
+                           Success:(GetMainViewInfoSuccessBlock)success
+                           Failure:(yy_reqFailureBlock)failure{
     NSString *appendStr = [NSString stringWithFormat:@"before/%@",dateStr];
     [YYManager yy_reqWithMethod:YYRequestGET urlStr:appendStr params:nil class:NSClassFromString(@"YYLatestNewsBO") success:^(id data) {
         success(data);
