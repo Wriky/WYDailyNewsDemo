@@ -91,7 +91,7 @@
     
     [self constructScrollData];
     WS(weakSelf);
-    autoLoopView = [[YYAutoLoopView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 200.f)];
+    autoLoopView = [[YYAutoLoopView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 200.f)];
     autoLoopView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     autoLoopView.contentMode = UIViewContentModeScaleAspectFill;
     autoLoopView.banners = scrollNewsArr;
@@ -112,10 +112,10 @@
 #pragma mark - View
 #pragma mark - View factory
 - (void)addMainTableView{
-    mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     mainTableView.delegate = self;
     mainTableView.dataSource = self;
-    mainTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, ScreenWidth, 200.f)];
+    mainTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, KScreenWidth, 200.f)];
     [self.view addSubview:mainTableView];
     
 }
@@ -123,7 +123,7 @@
 
 - (void)navigationBarView{
     //假的navBar
-    _fakeNavBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, TopMinY)];
+    _fakeNavBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, TopMinY)];
     _fakeNavBar.backgroundColor = StandardColor_1;
     _fakeNavBar.alpha = 0.0;
     [self.view addSubview:_fakeNavBar];
@@ -145,7 +145,7 @@
 - (YYLoadingView *)loadingView{
     
     if (!_loadingView) {
-        _loadingView = [[YYLoadingView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+        _loadingView = [[YYLoadingView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     }
     
     return _loadingView;

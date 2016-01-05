@@ -13,8 +13,9 @@ UIKIT_EXTERN NSString * const YYRequestGET; // get
 UIKIT_EXTERN NSString * const YYRequestPOST; // post
 
 
-#define ScreenHeight [UIScreen mainScreen].bounds.size.height
-#define ScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define KScreenHeight [UIScreen mainScreen].bounds.size.height
+#define KScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define kScreenBounds [UIScreen mainScreen].bounds
 #define NavHeight   50.f
 #define TopMinY 64.f
 #define YYTimeoutInterval 20.0 // 请求超时时间

@@ -104,7 +104,7 @@ NSString *weekdayStringFromDate(NSDate *inputDate){
 
 float CurrentDevce()
 {
-    return ((ScreenWidth == 320.f && ScreenHeight< 500.f)?3.5:(ScreenWidth == 320.f && ScreenHeight> 500.f)?4:(ScreenWidth == 375)?4.7:5.5);
+    return ((KScreenWidth == 320.f && KScreenHeight< 500.f)?3.5:(KScreenWidth == 320.f && KScreenHeight> 500.f)?4:(KScreenWidth == 375)?4.7:5.5);
 }
 
 float AdjustF(float X)
@@ -115,7 +115,7 @@ float AdjustF(float X)
         return X;
     }
     else{
-        return X*(ScreenWidth/320.f);
+        return X*(KScreenWidth/320.f);
     }
     
 }
@@ -128,7 +128,7 @@ CGRect AdjustRect(float X,float Y,float W,float H)
         return CGRectMake(X, Y, W, H);
     }else
     {
-        return CGRectMake(X*(ScreenWidth/320.f), Y*(ScreenWidth/320.f), W*(ScreenWidth/320.f), H*(ScreenWidth/320.f));
+        return CGRectMake(X*(KScreenWidth/320.f), Y*(KScreenWidth/320.f), W*(KScreenWidth/320.f), H*(KScreenWidth/320.f));
     }
 }
 

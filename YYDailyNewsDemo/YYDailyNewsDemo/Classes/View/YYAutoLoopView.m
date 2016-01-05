@@ -64,7 +64,7 @@
     _scrollView.delegate = self;
     _scrollView.backgroundColor = [UIColor yellowColor];
     _scrollView.pagingEnabled = YES;
-    _scrollView.contentSize = CGSizeMake(3 * ScreenWidth, 0);
+    _scrollView.contentSize = CGSizeMake(3 * KScreenWidth, 0);
     [self addSubview:_scrollView];
 }
 
@@ -108,11 +108,11 @@
         cell.contentMode = UIViewContentModeScaleAspectFill;
         cell.clickBannerCallBackBlock = [_cells[i] clickBannerCallBackBlock];
         cell.userInteractionEnabled = YES;
-        CGRect cellFrame = CGRectMake(ScreenWidth * i, 0, ScreenWidth, _scrollView.frame.size.height);
+        CGRect cellFrame = CGRectMake(KScreenWidth * i, 0, KScreenWidth, _scrollView.frame.size.height);
         cell.frame = cellFrame;
         [_scrollView addSubview:cell];
     }
-    _scrollView.contentOffset = CGPointMake(ScreenWidth, 0);
+    _scrollView.contentOffset = CGPointMake(KScreenWidth, 0);
     _pageControl.currentPage = _currentIdx;
     if (_scrollToPageForIndex) {
         _scrollToPageForIndex(_currentIdx);

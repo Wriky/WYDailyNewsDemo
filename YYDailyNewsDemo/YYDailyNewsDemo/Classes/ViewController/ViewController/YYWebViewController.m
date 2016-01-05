@@ -48,16 +48,16 @@
 
 - (void)addSubViews{
     
-    txtWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, ScreenHeight-20-43)];
+    txtWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, KScreenWidth, KScreenHeight-20-43)];
     txtWebView.delegate = self;
     txtWebView.scrollView.delegate = self;
     [self.view addSubview:txtWebView];
     
-    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, -40, ScreenWidth, 260)];
+    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, -40, KScreenWidth, 260)];
     _headerView.clipsToBounds = YES;
     [self.view addSubview:_headerView];
     
-    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, ScreenWidth, 300.f)];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, KScreenWidth, 300.f)];
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     [_headerView addSubview:_imageView];
     
@@ -65,7 +65,7 @@
     _titleLab.numberOfLines = 0;
     [_headerView addSubview:_titleLab];
     
-    _imgSourceLab = [[UILabel alloc] initWithFrame:CGRectMake(10, 240, ScreenWidth-20, 20)];
+    _imgSourceLab = [[UILabel alloc] initWithFrame:CGRectMake(10, 240, KScreenWidth-20, 20)];
     _imgSourceLab.textAlignment = NSTextAlignmentRight;
     _imgSourceLab.font = [UIFont systemFontOfSize:12];
     _imgSourceLab.textColor = [UIColor whiteColor];
@@ -76,7 +76,7 @@
 
 - (void)bottomBarView{
     bottomBar = [[YYBottomBarView alloc] init];
-    bottomBar.frame = CGRectMake(0, ScreenHeight - 50.f, ScreenWidth, 50.f);
+    bottomBar.frame = CGRectMake(0, KScreenHeight - 50.f, KScreenWidth, 50.f);
     bottomBar.delegate = self;
     [self.view addSubview:bottomBar];
 }
@@ -84,7 +84,7 @@
 - (YYLoadingView *)loadingView{
     
     if (!_loadingView) {
-        _loadingView = [[YYLoadingView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+        _loadingView = [[YYLoadingView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     }
     
     return _loadingView;
@@ -94,9 +94,9 @@
 - (void)reloadSubViews{
     [_imageView yy_setImageWithUrlString:detailNewsBO.imageUrl placeholderImage:Image(@"backgroundImage")];
     NSDictionary *attributesDic = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:21],NSForegroundColorAttributeName:[UIColor whiteColor]};
-    CGSize size = [detailNewsBO.newsTitle boundingRectWithSize:CGSizeMake(ScreenWidth-30, 60) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:attributesDic context:nil].size;
+    CGSize size = [detailNewsBO.newsTitle boundingRectWithSize:CGSizeMake(KScreenWidth-30, 60) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:attributesDic context:nil].size;
     
-    _titleLab.frame = CGRectMake(15.f, _headerView.frame.size.height-20.f-size.height, ScreenWidth-30.f, size.height);
+    _titleLab.frame = CGRectMake(15.f, _headerView.frame.size.height-20.f-size.height, KScreenWidth-30.f, size.height);
     _titleLab.attributedText = [[NSAttributedString alloc] initWithString:detailNewsBO.newsTitle attributes:attributesDic];
     _imgSourceLab.text = [NSString stringWithFormat:@"图片: %@",detailNewsBO.imageSource];;
     
@@ -140,7 +140,7 @@
     
     CGFloat offSetY = scrollView.contentOffset.y;
     if (-offSetY<=80&&-offSetY>=0) {
-        _headerView.frame = CGRectMake(0, -40-offSetY/2, ScreenWidth, 260-offSetY/2);
+        _headerView.frame = CGRectMake(0, -40-offSetY/2, KScreenWidth, 260-offSetY/2);
        
         [_imgSourceLab setTop:240-offSetY/2];
         [_titleLab setBottom:_imgSourceLab.bottom-20];
@@ -150,10 +150,10 @@
     }else if (-offSetY>80) {
         txtWebView.scrollView.contentOffset = CGPointMake(0, -80);
     }else if (offSetY <=300 ){
-        _headerView.frame = CGRectMake(0, -40-offSetY, ScreenWidth, 260);
+        _headerView.frame = CGRectMake(0, -40-offSetY, KScreenWidth, 260);
     }
     
-    if (offSetY + ScreenHeight > scrollView.contentSize.height + 160&&!txtWebView.scrollView.isDragging) {
+    if (offSetY + KScreenHeight > scrollView.contentSize.height + 160&&!txtWebView.scrollView.isDragging) {
        // [self.viewmodel getNextStoryContent];
     }
 

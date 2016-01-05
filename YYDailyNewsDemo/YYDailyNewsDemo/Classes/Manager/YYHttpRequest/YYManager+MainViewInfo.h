@@ -7,7 +7,7 @@
 //
 
 #import "YYManager.h"
-#include "YYSingleNewsBO.h"
+#import "YYSingleNewsBO.h"
 #import "YYLatestNewsBO.h"
 #import "YYDetailNewsBO.h"
 
