@@ -41,6 +41,8 @@
 		C9C60FC71C3BC9B600B28EFF /* YYMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FBD1C3BC9B600B28EFF /* YYMainViewController.m */; };
 		C9C60FC81C3BC9B600B28EFF /* YYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FBF1C3BC9B600B28EFF /* YYWebViewController.m */; };
 		C9C60FCC1C3BC9FF00B28EFF /* YYToolKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FCB1C3BC9FF00B28EFF /* YYToolKit.m */; };
+		C9C60FD01C3BCBE100B28EFF /* YYOverallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FCF1C3BCBE100B28EFF /* YYOverallViewController.m */; };
+		C9C60FD41C3BCC4C00B28EFF /* YYHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FD31C3BCC4C00B28EFF /* YYHomeViewModel.m */; };
 		C9D3753F1C322AA400A1CA0B /* YYRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D3753E1C322AA400A1CA0B /* YYRefreshFooterView.m */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +115,10 @@
 		C9C60FBF1C3BC9B600B28EFF /* YYWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebViewController.m; sourceTree = "<group>"; };
 		C9C60FCA1C3BC9FF00B28EFF /* YYToolKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYToolKit.h; sourceTree = "<group>"; };
 		C9C60FCB1C3BC9FF00B28EFF /* YYToolKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYToolKit.m; sourceTree = "<group>"; };
+		C9C60FCE1C3BCBE100B28EFF /* YYOverallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYOverallViewController.h; sourceTree = "<group>"; };
+		C9C60FCF1C3BCBE100B28EFF /* YYOverallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYOverallViewController.m; sourceTree = "<group>"; };
+		C9C60FD21C3BCC4C00B28EFF /* YYHomeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYHomeViewModel.h; sourceTree = "<group>"; };
+		C9C60FD31C3BCC4C00B28EFF /* YYHomeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYHomeViewModel.m; sourceTree = "<group>"; };
 		C9D3753D1C322AA400A1CA0B /* YYRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYRefreshFooterView.h; sourceTree = "<group>"; };
 		C9D3753E1C322AA400A1CA0B /* YYRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYRefreshFooterView.m; sourceTree = "<group>"; };
 		F9C8B74F2CA8CF3070972AF8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +189,7 @@
 				C9C60FC91C3BC9FF00B28EFF /* Utility */,
 				C9C18F2F1C3101D300E73B12 /* Category */,
 				C9C18F301C3101D300E73B12 /* BaseView */,
+				C9C60FCD1C3BCBAC00B28EFF /* OverallVC */,
 				C9C60FAA1C3BC9B600B28EFF /* HomePage */,
 				C9C18F381C310A0E00E73B12 /* Manager */,
 				7BF9A2661C316C7900DAFF9F /* Libs */,
@@ -278,6 +285,7 @@
 			children = (
 				C9C60FAB1C3BC9B600B28EFF /* Mode */,
 				C9C60FB41C3BC9B600B28EFF /* View */,
+				C9C60FD11C3BCC0800B28EFF /* ViewModel */,
 				C9C60FBB1C3BC9B600B28EFF /* ViewController */,
 			);
 			name = HomePage;
@@ -332,6 +340,26 @@
 			name = Utility;
 			path = Classes/Utility;
 			sourceTree = "<group>";
+		};
+		C9C60FCD1C3BCBAC00B28EFF /* OverallVC */ = {
+			isa = PBXGroup;
+			children = (
+				C9C60FCE1C3BCBE100B28EFF /* YYOverallViewController.h */,
+				C9C60FCF1C3BCBE100B28EFF /* YYOverallViewController.m */,
+			);
+			name = OverallVC;
+			path = Classes/View/OverallVC;
+			sourceTree = "<group>";
+		};
+		C9C60FD11C3BCC0800B28EFF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C9C60FD21C3BCC4C00B28EFF /* YYHomeViewModel.h */,
+				C9C60FD31C3BCC4C00B28EFF /* YYHomeViewModel.m */,
+			);
+			name = ViewModel;
+			path = YYDailyNewsDemo/Classes/HomePage/ViewModel;
+			sourceTree = SOURCE_ROOT;
 		};
 		F249A543F9132C070B2D79AC /* Frameworks */ = {
 			isa = PBXGroup;
@@ -467,6 +495,7 @@
 				C908C4C81C33E054008FF8BB /* UIView+Extension.m in Sources */,
 				C9C60FC31C3BC9B600B28EFF /* YYSingleNewsBO.m in Sources */,
 				7BF9A2701C316D6B00DAFF9F /* UINavigationItem+XPMargin.m in Sources */,
+				C9C60FD41C3BCC4C00B28EFF /* YYHomeViewModel.m in Sources */,
 				C9D3753F1C322AA400A1CA0B /* YYRefreshFooterView.m in Sources */,
 				C9C60FC81C3BC9B600B28EFF /* YYWebViewController.m in Sources */,
 				7BF9A26D1C316CA900DAFF9F /* NJKWebViewProgressView.m in Sources */,
@@ -481,6 +510,7 @@
 				C9C60FC61C3BC9B600B28EFF /* YYMainViewCell.m in Sources */,
 				C94938111C30FEE200ABC6D4 /* main.m in Sources */,
 				C9C60FC21C3BC9B600B28EFF /* YYLatestNewsBO.m in Sources */,
+				C9C60FD01C3BCBE100B28EFF /* YYOverallViewController.m in Sources */,
 				C9C60FC41C3BC9B600B28EFF /* YYBottomBarView.m in Sources */,
 				C9C18F5C1C312D0100E73B12 /* YYManager+MainViewInfo.m in Sources */,
 				C9C60FC11C3BC9B600B28EFF /* YYDetailNewsBO.m in Sources */,
