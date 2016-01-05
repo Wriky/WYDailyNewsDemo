@@ -10,6 +10,7 @@
 #import "XPBannerInfo.h"
 #import "YYBannerView.h"
 #define kDefaultHeaderFrame CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+#define BannerViewTag 186681
 
 @interface YYAutoLoopView () <UIScrollViewDelegate>
 {
@@ -103,7 +104,8 @@
     
     for (NSInteger i = 0; i < _cells.count; i ++) {
         YYBannerView *cell = [[YYBannerView alloc] init];
-                cell.banner = [_cells[i] banner];
+                cell.bannerNewsBO = [_cells[i] bannerNewsBO];
+        cell.tag = i + BannerViewTag;
         cell.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         cell.contentMode = UIViewContentModeScaleAspectFill;
         cell.clickBannerCallBackBlock = [_cells[i] clickBannerCallBackBlock];
@@ -177,18 +179,20 @@
     _banners = banners;
     _currentIdx = (int)banners.count  - 1;
     NSMutableArray *cells = [NSMutableArray array];
-    [banners enumerateObjectsUsingBlock:^(XPBannerInfo *banner, NSUInteger idx, BOOL *stop) {
+    [banners enumerateObjectsUsingBlock:^(YYSingleNewsBO *bannerBO, NSUInteger idx, BOOL *stop) {
         YYBannerView *cell = [[YYBannerView alloc] initWithFrame:self.frame];
+       
         cell.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         cell.contentMode = UIViewContentModeScaleAspectFill;
 
-        cell.banner = banner;
-        cell.clickBannerCallBackBlock = ^(XPBannerInfo *banner){
+        cell.bannerNewsBO = bannerBO;
+        cell.clickBannerCallBackBlock = ^(YYSingleNewsBO *bannerNewsBO){
                 if (_clickAutoLoopCallBackBlock) {
-                    _clickAutoLoopCallBackBlock(banner);
+                    _clickAutoLoopCallBackBlock(bannerNewsBO);
                 }
        
         };
+        
         [cells addObject:cell];
     }];
     
@@ -243,6 +247,12 @@
         CGPoint newPoint = _scrollView.center;
         newPoint.y += delta;
         self.clipsToBounds = NO;
+        
+        NSUInteger index = _scrollView.contentOffset.x/KScreenWidth;
+        YYBannerView *bannerView = [_scrollView viewWithTag:index + BannerViewTag];
+        [bannerView.titleLab setBottom:_scrollView.height-25];
+        
+        
     }
 }
 

@@ -30,6 +30,9 @@ UIKIT_EXTERN NSString * const YYRequestPOST; // post
 #endif
 #endif
 
+// 延迟调用
+#define DELAYEXECUTE(delayTime,func) (dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{func;}))
+
 //颜色相关
 #define StandardColor_1 [UIColor yy_colorWithColorHexCode:@"#f52443"] //红
 #define StandardColor_2 [UIColor yy_colorWithColorHexCode:@"#212121"] //黑

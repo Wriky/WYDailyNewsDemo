@@ -17,6 +17,13 @@
         self.contentMode = UIViewContentModeScaleAspectFill;
         self.clipsToBounds = YES;
         self.userInteractionEnabled = YES;
+        
+        UILabel *lab = [[UILabel alloc] init];
+        lab.numberOfLines = 0;
+        [self addSubview:lab];
+        _titleLab = lab;
+
+        
         [self configTapGes];
     }
     return self;
@@ -34,19 +41,24 @@
 #pragma mark - User Action
 - (void)tapAction{
 
-    _clickBannerCallBackBlock(_banner);
+    _clickBannerCallBackBlock(_bannerNewsBO);
 
 }
 
 #pragma mark - Setter
-- (void)setBanner:(XPBannerInfo *)banner {
+
+
+- (void)setBannerNewsBO:(YYSingleNewsBO *)bannerNewsBO{
     
-    _banner = banner;
-    if ([banner.bannerImage hasPrefix:@"Sao/shopDefault"]){
-        self.image = Image(banner.bannerImage);
-    }else{
-        [self yy_setImageWithUrlString:banner.bannerImage placeholderImage:Image(@"tags_selected.png")];
-    }
+    _bannerNewsBO = bannerNewsBO;
+   
+        [self yy_setImageWithUrlString:bannerNewsBO.imageUrl placeholderImage:Image(@"tags_selected.png")];
+        NSAttributedString *attStr = [[NSAttributedString alloc] initWithString:bannerNewsBO.newsTitle attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:21],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        CGSize size =  [attStr boundingRectWithSize:CGSizeMake(KScreenWidth-30, AdjustF(200.f)) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;
+        _titleLab.frame = CGRectMake(15, 0, KScreenWidth-30, size.height);
+        [_titleLab setBottom:AdjustF(180.f)];
+        _titleLab.attributedText = attStr;
+    
 }
 
 @end

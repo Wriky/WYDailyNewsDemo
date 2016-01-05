@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XPBannerInfo.h"
+#import "YYSingleNewsBO.h"
 
 @interface YYBannerView : UIImageView
 
-@property (nonatomic, strong) XPBannerInfo *banner;
+@property (nonatomic, strong) YYSingleNewsBO *bannerNewsBO;
 
-@property (nonatomic,   copy) void(^clickBannerCallBackBlock)(XPBannerInfo *banner);
+
+@property (nonatomic,   copy) void(^clickBannerCallBackBlock)(YYSingleNewsBO *bannerNewsBO);
+@property (nonatomic, weak)UILabel *titleLab;
 
 @end

@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
-@class XPBannerInfo;
+@class YYSingleNewsBO;
 
 /**
  *  自动滚动视图
  */
 @interface YYAutoLoopView : UIView
 
-@property (nonatomic, copy)   void(^clickAutoLoopCallBackBlock)(XPBannerInfo *banner);//点击图片事件回调
+@property (nonatomic, copy)   void(^clickAutoLoopCallBackBlock)(YYSingleNewsBO *bannerNews);//点击图片事件回调
 @property (nonatomic, assign) BOOL autoLoopScroll; // 是否自动滚动（默认为YES）
 @property (nonatomic, assign) NSTimeInterval autoLoopScrollInterval; // 自动滚动的时间间隔（单位为s）
 @property (nonatomic, strong) NSArray *banners;//bannner数组 数据源
