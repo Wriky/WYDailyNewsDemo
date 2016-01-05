@@ -1,0 +1,18 @@
+//
+//  XPBannerView.h
+//  YYDailyNewsDemo
+//
+//  Created by REiFON-MAC on 15/12/29.
+//  Copyright © 2015年 L. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "XPBannerInfo.h"
+
+@interface YYBannerView : UIImageView
+
+@property (nonatomic, strong) XPBannerInfo *banner;
+
+@property (nonatomic,   copy) void(^clickBannerCallBackBlock)(XPBannerInfo *banner);
+
+@end

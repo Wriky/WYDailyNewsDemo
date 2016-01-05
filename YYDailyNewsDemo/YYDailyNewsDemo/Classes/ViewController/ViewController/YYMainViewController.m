@@ -10,16 +10,15 @@
 #import "YYManager+MainViewInfo.h"
 #import "YYMainViewCell.h"
 #import "YYDateCell.h"
-#import "XPWebViewController.h"
 #import "YYWebViewController.h"
 #import "YYRefreshFooterView.h"
-#import "YYBannerView.h"
 #import "YYLoadingView.h"
 #import "YYRefreshView.h"
+#import "YYAutoLoopView.h"
 
 #define kLimitOffsetY sizeForDevices(165, 165, 200, 220)
 
-@interface YYMainViewController ()<UITableViewDataSource, UITableViewDelegate, YYBannerViewDelegate>
+@interface YYMainViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *mainTableView;
     YYLatestNewsBO *latesNewsBO;
@@ -31,8 +30,7 @@
     NSString *currentDateStr;
     NSString *beforeDateStr;
     MJRefreshAutoNormalFooter *footer;
-    YYBannerView *bannerView;
-    NSMutableArray *newsMutableArr;
+    YYAutoLoopView *autoLoopView;
     BOOL isLoading;
 }
 @property (nonatomic, strong)YYLoadingView *loadingView; //加载视图
@@ -52,8 +50,7 @@
          [tableNewsArr addObjectsFromArray:latesNewsBO.storiesArray];
          
          beforeDateStr = latesNewsBO.date;
-         [self constructScrollData];
-        
+         [self addTopView];
          [mainTableView reloadData];
          [mainTableView.mj_header endRefreshing];
          isLoading = NO;
@@ -78,19 +75,44 @@
 }
 
 - (void)constructScrollData{
-    newsMutableArr = [NSMutableArray new];
-    [newsMutableArr addObjectsFromArray:latesNewsBO.topStoriesArray];
-    YYSingleNewsBO *firstBO = [latesNewsBO.topStoriesArray firstObject];
-    YYSingleNewsBO *lastBO = [latesNewsBO.topStoriesArray lastObject];
-    [newsMutableArr addObject:firstBO];
-    [newsMutableArr insertObject:lastBO atIndex:0];
-     bannerView.topStories = newsMutableArr;
+    NSArray *topArray = latesNewsBO.topStoriesArray;
+    scrollNewsArr = [[NSMutableArray alloc] init];
+    for (NSUInteger i=0; i<topArray.count; i++) {
+        YYSingleNewsBO *scrollNewsBO = topArray[i];
+        XPBannerInfo *bannerInfo = [[XPBannerInfo alloc] init];
+        bannerInfo.bannerImage = scrollNewsBO.imageUrl;
+        bannerInfo.newsId = scrollNewsBO.newsId;
+        [scrollNewsArr addObject:bannerInfo];
+    }
+
+}
+
+- (void)addTopView{
+    
+    [self constructScrollData];
+    WS(weakSelf);
+    autoLoopView = [[YYAutoLoopView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 200.f)];
+    autoLoopView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    autoLoopView.contentMode = UIViewContentModeScaleAspectFill;
+    autoLoopView.banners = scrollNewsArr;
+    autoLoopView.clickAutoLoopCallBackBlock = ^(XPBannerInfo *banner){
+        YYSingleNewsBO *singleBO= [[YYSingleNewsBO alloc] init];
+        singleBO.newsId = banner.newsId;
+        singleBO.imagesUrl = @[banner.bannerImage];
+        YYWebViewController *webView = [[YYWebViewController alloc] init];
+        webView.singleNewsBO = singleBO;
+        [weakSelf.navigationController pushViewController:webView animated:YES];
+    };
+    [mainTableView setTableHeaderView:autoLoopView];
+    
+    [scrollNewsArr removeAllObjects];
+    
 }
 
 #pragma mark - View
 #pragma mark - View factory
 - (void)addMainTableView{
-    mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, ScreenHeight-20.f)];
+    mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     mainTableView.delegate = self;
     mainTableView.dataSource = self;
     mainTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, ScreenWidth, 200.f)];
@@ -129,14 +151,6 @@
     return _loadingView;
 }
 
-- (void)addCarousView{
-   
-    
-    bannerView = [[YYBannerView alloc] initWithFrame:CGRectMake(0.f, -40.f, ScreenWidth, 260.f)];
-    bannerView.delegate = self;
-    bannerView.clipsToBounds = YES;
-    [self.view addSubview:bannerView];
-}
 
 - (void)addHeader{
     mainTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
@@ -280,26 +294,20 @@
                
             }
             
-            bannerView.frame = CGRectMake(0, -40-offSetY/2, ScreenWidth, 260-offSetY/2);
-            [bannerView updateSubViewsOriginY:offSetY];
             
         }else if(offSetY<-80){
-            mainTableView.contentOffset = CGPointMake(0.f, -80.f);
+          //  mainTableView.contentOffset = CGPointMake(0.f, -80.f);
         }else if(offSetY <= 300) {
             [_refreshView redrawFromProgress:0];
-            bannerView.frame = CGRectMake(0, -40-offSetY, ScreenWidth, 260);
-        }
+                   }
+    }
+    
+    if (scrollView == mainTableView){
+        
+        [(YYAutoLoopView *)mainTableView.tableHeaderView yy_parallaxHeaderViewWithOffset:scrollView.contentOffset];
     }
 }
 
-#pragma mark - YYBannerViewDelegate
-- (void)didSelectItemWithTag:(NSInteger)tag{
-    YYSingleNewsBO *singleBO = newsMutableArr[tag - 100];
-    YYWebViewController *webView = [[YYWebViewController alloc] init];
-    webView.singleNewsBO = singleBO;
-    [self.navigationController pushViewController:webView animated:YES];
-    
-}
 
 #pragma mark - View Load
 - (void)viewDidLoad {
@@ -314,7 +322,6 @@
     [self initCircleProgress];
     [self requestLatestNewsData];
     [self addMainTableView];
-    [self addCarousView];
 
     [self navigationBarView];
     [self addHeader];

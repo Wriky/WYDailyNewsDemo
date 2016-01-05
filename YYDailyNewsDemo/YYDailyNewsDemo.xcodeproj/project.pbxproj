@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7B6C951A1C317D2F00EC835C /* YYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C95191C317D2F00EC835C /* YYWebViewController.m */; };
-		7BF845B61C341EA800A3F885 /* YYTopperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF845B51C341EA800A3F885 /* YYTopperView.m */; };
 		7BF9A25F1C31696600DAFF9F /* UINavigationController+XPPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF9A25E1C31696600DAFF9F /* UINavigationController+XPPopGesture.m */; };
 		7BF9A2621C316A8400DAFF9F /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7BF9A2611C316A8400DAFF9F /* Resource.bundle */; };
 		7BF9A26C1C316CA900DAFF9F /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF9A2691C316CA900DAFF9F /* NJKWebViewProgress.m */; };
@@ -18,7 +17,6 @@
 		7BF9A2761C316FAF00DAFF9F /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF9A2751C316FAF00DAFF9F /* UIViewController+Swizzling.m */; };
 		C7ABA2F80F1A2D8363764C45 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76059F50B71C076AFC0B3BD /* libPods.a */; };
 		C908C4C81C33E054008FF8BB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C908C4C71C33E054008FF8BB /* UIView+Extension.m */; };
-		C91A38451C34F96B00C113E2 /* YYBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C91A38441C34F96B00C113E2 /* YYBannerView.m */; };
 		C94938111C30FEE200ABC6D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C94938101C30FEE200ABC6D4 /* main.m */; };
 		C94938141C30FEE200ABC6D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C94938131C30FEE200ABC6D4 /* AppDelegate.m */; };
 		C949381C1C30FEE200ABC6D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C949381B1C30FEE200ABC6D4 /* Assets.xcassets */; };
@@ -36,6 +34,8 @@
 		C9C18F5F1C312F0A00E73B12 /* YYLatestNewsBO.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F5E1C312F0A00E73B12 /* YYLatestNewsBO.m */; };
 		C9C18F651C313A5000E73B12 /* YYMainViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F641C313A5000E73B12 /* YYMainViewCell.m */; };
 		C9C18F681C313C7600E73B12 /* UIColor+YY.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F671C313C7600E73B12 /* UIColor+YY.m */; };
+		C9C60FA01C3B6DCC00B28EFF /* YYAutoLoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60F9F1C3B6DCC00B28EFF /* YYAutoLoopView.m */; };
+		C9C60FA31C3B6DD600B28EFF /* YYBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FA21C3B6DD600B28EFF /* YYBannerView.m */; };
 		C9D375361C321BC000A1CA0B /* XPBannerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D375351C321BC000A1CA0B /* XPBannerInfo.m */; };
 		C9D3753F1C322AA400A1CA0B /* YYRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D3753E1C322AA400A1CA0B /* YYRefreshFooterView.m */; };
 		C9D375421C3250BF00A1CA0B /* YYDetailNewsBO.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D375411C3250BF00A1CA0B /* YYDetailNewsBO.m */; };
@@ -47,8 +47,6 @@
 		0BCC03A17591B5AD1052C1E6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7B6C95181C317D2F00EC835C /* YYWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebViewController.h; sourceTree = "<group>"; };
 		7B6C95191C317D2F00EC835C /* YYWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebViewController.m; sourceTree = "<group>"; };
-		7BF845B41C341EA800A3F885 /* YYTopperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTopperView.h; sourceTree = "<group>"; };
-		7BF845B51C341EA800A3F885 /* YYTopperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTopperView.m; sourceTree = "<group>"; };
 		7BF9A25D1C31696600DAFF9F /* UINavigationController+XPPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+XPPopGesture.h"; sourceTree = "<group>"; };
 		7BF9A25E1C31696600DAFF9F /* UINavigationController+XPPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+XPPopGesture.m"; sourceTree = "<group>"; };
 		7BF9A2611C316A8400DAFF9F /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
@@ -65,8 +63,6 @@
 		A76059F50B71C076AFC0B3BD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C908C4C61C33E054008FF8BB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		C908C4C71C33E054008FF8BB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
-		C91A38431C34F96B00C113E2 /* YYBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYBannerView.h; sourceTree = "<group>"; };
-		C91A38441C34F96B00C113E2 /* YYBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYBannerView.m; sourceTree = "<group>"; };
 		C949380C1C30FEE200ABC6D4 /* YYDailyNewsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYDailyNewsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94938101C30FEE200ABC6D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C94938121C30FEE200ABC6D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,6 +98,10 @@
 		C9C18F641C313A5000E73B12 /* YYMainViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMainViewCell.m; sourceTree = "<group>"; };
 		C9C18F661C313C7600E73B12 /* UIColor+YY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YY.h"; sourceTree = "<group>"; };
 		C9C18F671C313C7600E73B12 /* UIColor+YY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YY.m"; sourceTree = "<group>"; };
+		C9C60F9E1C3B6DCC00B28EFF /* YYAutoLoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAutoLoopView.h; sourceTree = "<group>"; };
+		C9C60F9F1C3B6DCC00B28EFF /* YYAutoLoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAutoLoopView.m; sourceTree = "<group>"; };
+		C9C60FA11C3B6DD600B28EFF /* YYBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYBannerView.h; sourceTree = "<group>"; };
+		C9C60FA21C3B6DD600B28EFF /* YYBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYBannerView.m; sourceTree = "<group>"; };
 		C9D375341C321BC000A1CA0B /* XPBannerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPBannerInfo.h; sourceTree = "<group>"; };
 		C9D375351C321BC000A1CA0B /* XPBannerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPBannerInfo.m; sourceTree = "<group>"; };
 		C9D3753D1C322AA400A1CA0B /* YYRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYRefreshFooterView.h; sourceTree = "<group>"; };
@@ -239,6 +239,10 @@
 		C9C18F301C3101D300E73B12 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				C9C60F9E1C3B6DCC00B28EFF /* YYAutoLoopView.h */,
+				C9C60F9F1C3B6DCC00B28EFF /* YYAutoLoopView.m */,
+				C9C60FA11C3B6DD600B28EFF /* YYBannerView.h */,
+				C9C60FA21C3B6DD600B28EFF /* YYBannerView.m */,
 				C9D3753D1C322AA400A1CA0B /* YYRefreshFooterView.h */,
 				C9D3753E1C322AA400A1CA0B /* YYRefreshFooterView.m */,
 				C9AFF9A01C3A065B0006C453 /* YYLoadingView.h */,
@@ -294,10 +298,6 @@
 		C9C18F511C3129C800E73B12 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C91A38431C34F96B00C113E2 /* YYBannerView.h */,
-				C91A38441C34F96B00C113E2 /* YYBannerView.m */,
-				7BF845B41C341EA800A3F885 /* YYTopperView.h */,
-				7BF845B51C341EA800A3F885 /* YYTopperView.m */,
 				C9C18F631C313A5000E73B12 /* YYMainViewCell.h */,
 				C9C18F641C313A5000E73B12 /* YYMainViewCell.m */,
 				C9D375481C32770400A1CA0B /* YYDateCell.h */,
@@ -454,12 +454,11 @@
 				C9C18F651C313A5000E73B12 /* YYMainViewCell.m in Sources */,
 				C9AFF9A71C3A4A1A0006C453 /* YYRefreshView.m in Sources */,
 				C9C18F3B1C310A3900E73B12 /* YYHttpMgr.m in Sources */,
-				7BF845B61C341EA800A3F885 /* YYTopperView.m in Sources */,
 				7BF9A26C1C316CA900DAFF9F /* NJKWebViewProgress.m in Sources */,
 				7BF9A2731C316DEE00DAFF9F /* UIBarButtonItem+XP.m in Sources */,
 				7BF9A2761C316FAF00DAFF9F /* UIViewController+Swizzling.m in Sources */,
-				C91A38451C34F96B00C113E2 /* YYBannerView.m in Sources */,
 				C9D375471C3275E700A1CA0B /* YYBottomBarView.m in Sources */,
+				C9C60FA31C3B6DD600B28EFF /* YYBannerView.m in Sources */,
 				C9C18F551C3129C800E73B12 /* YYMainViewController.m in Sources */,
 				C9AFF9A21C3A065B0006C453 /* YYLoadingView.m in Sources */,
 				C908C4C81C33E054008FF8BB /* UIView+Extension.m in Sources */,
@@ -472,6 +471,7 @@
 				C94938141C30FEE200ABC6D4 /* AppDelegate.m in Sources */,
 				C9C18F481C311A4700E73B12 /* UIImageView+YYImg.m in Sources */,
 				C9C18F341C31020800E73B12 /* YYToolKit.m in Sources */,
+				C9C60FA01C3B6DCC00B28EFF /* YYAutoLoopView.m in Sources */,
 				C9C18F3E1C310A7100E73B12 /* YYManager.m in Sources */,
 				7BF9A25F1C31696600DAFF9F /* UINavigationController+XPPopGesture.m in Sources */,
 				C94938111C30FEE200ABC6D4 /* main.m in Sources */,
