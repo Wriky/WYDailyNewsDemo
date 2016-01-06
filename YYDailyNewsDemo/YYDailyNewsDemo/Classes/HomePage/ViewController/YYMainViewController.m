@@ -17,80 +17,68 @@
 #import "YYAutoLoopView.h"
 
 #define kLimitOffsetY sizeForDevices(165, 165, 200, 220)
+#define kRowHeight 70.f
+#define kDateLabHeight 36.f;
 
 @interface YYMainViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *mainTableView;
-    YYLatestNewsBO *latesNewsBO;
-    NSMutableArray *tableNewsArr;
     UIView  *_fakeNavBar;//假的导航
     UILabel *_navTitleLab;
     NSUInteger indexF;
     NSString *currentDateStr;
-    NSString *beforeDateStr;
-    MJRefreshAutoNormalFooter *footer;
     YYAutoLoopView *autoLoopView;
-    BOOL isLoading;
 }
 @property (nonatomic, strong)YYLoadingView *loadingView; //加载视图
 @property (nonatomic, strong)YYRefreshView *refreshView;
+@property (nonatomic, strong)YYHomeViewModel *homeVModel;
 @end
 
 @implementation YYMainViewController
 
-#pragma mark - Data
-- (void)requestLatestNewsData{
-    isLoading = YES;
-     [YYManager yy_getMainViewNewsWithField:@"latest" Success:^(YYLatestNewsBO *newsBO) {
-  
-         latesNewsBO = newsBO;
-         tableNewsArr = [[NSMutableArray alloc] init];
-         [tableNewsArr addObjectsFromArray:latesNewsBO.storiesArray];
-         beforeDateStr = latesNewsBO.date;
-         
-         [self addTopView];
-         [mainTableView reloadData];
-         [mainTableView.mj_header endRefreshing];
-         isLoading = NO;
-         [_loadingView dismissLoadingView];
-         _loadingView = nil;
-         
-         DELAYEXECUTE(1.f, [_refreshView stopAnimation];);
-
-    } Failure:^(YYError *error) {
-    }];
+#pragma mark -Init
+- (instancetype)initWithModel:(YYHomeViewModel *)hvModel{
+    self = [super init];
+    if (self) {
+        self.homeVModel = hvModel;
+    }
+    return self;
 }
-
-- (void)reloadMoreData{
-    
-    [YYManager yy_getPreviousNewsWithDate:beforeDateStr Success:^(YYLatestNewsBO *newsBO) {
-       [tableNewsArr addObject:newsBO.date];
-       [tableNewsArr addObjectsFromArray:newsBO.storiesArray];
-        
-        [mainTableView reloadData];
-        [mainTableView.mj_footer endRefreshing];
-        beforeDateStr = newsBO.date;
-    } Failure:^(YYError *error) {
-        
-    }];
-}
-
 
 #pragma mark - View
 #pragma mark - View factory
+- (void)initSubViews{
+    
+    [self addMainTableView];
+    [self navigationBarView];
+    [self addTopView];
+    [self.view addSubview:self.loadingView];
+    
+    [_homeVModel requestLatestNews:^{
+        autoLoopView.banners = _homeVModel.topScrollArr;
+        [mainTableView reloadData];
+        [_loadingView dismissLoadingView];
+        _loadingView = nil;
+        
+        DELAYEXECUTE(1.f, [_refreshView stopAnimation];);
+
+    }];
+    
+}
+
 - (void)addMainTableView{
-    mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     mainTableView.delegate = self;
     mainTableView.dataSource = self;
-    mainTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, KScreenWidth, AdjustF(200.f))];
     [self.view addSubview:mainTableView];
     
 }
 
 
 - (void)navigationBarView{
+    self.navBarTitle = @"今日热闻";
     //假的navBar
-    _fakeNavBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, TopMinY)];
+    _fakeNavBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopMinY)];
     _fakeNavBar.backgroundColor = StandardColor_1;
     _fakeNavBar.alpha = 0.0;
     [self.view addSubview:_fakeNavBar];
@@ -113,10 +101,8 @@
 - (void)addTopView{
     
     WS(weakSelf);
-    autoLoopView = [[YYAutoLoopView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, AdjustF(200.f))];
-    autoLoopView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    autoLoopView.contentMode = UIViewContentModeScaleAspectFill;
-    autoLoopView.banners = latesNewsBO.topStoriesArray;
+    autoLoopView = [[YYAutoLoopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, AdjustF(200.f))];
+
     autoLoopView.clickAutoLoopCallBackBlock = ^(YYSingleNewsBO *bannerNews){
         
         YYWebViewController *webView = [[YYWebViewController alloc] init];
@@ -129,26 +115,14 @@
 - (YYLoadingView *)loadingView{
     
     if (!_loadingView) {
-        _loadingView = [[YYLoadingView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        _loadingView = [[YYLoadingView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     }
     
     return _loadingView;
 }
 
 
-- (void)addFooter{
-    if (footer) {
-        return;
-    }
-    footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(reloadMoreData)];
-    [footer setTitle:@"上拉加载更多..." forState:MJRefreshStateRefreshing];
-    footer.stateLabel.font = [UIFont systemFontOfSize:12];
-    footer.stateLabel.textColor = [UIColor lightGrayColor];
-    mainTableView.mj_footer = footer;
-    mainTableView.mj_footer.hidden = YES;
 
-
-}
 #pragma mark - View action
 
 
@@ -159,12 +133,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return tableNewsArr.count;
+    return _homeVModel.daysDataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    id model = [tableNewsArr objectAtIndex:indexPath.row];
+    id model = [_homeVModel.daysDataList objectAtIndex:indexPath.row];
     if ([model isKindOfClass:[NSString class]]) {
         static NSString *cellIndentifier = @"YYDateCell";
         YYDateCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
@@ -172,7 +146,7 @@
             cell = [[YYDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
             
         }
-        cell.dateStr = [tableNewsArr objectAtIndex:indexPath.row];
+        cell.dateStr = [_homeVModel.daysDataList objectAtIndex:indexPath.row];
         return cell;
     }
     
@@ -183,7 +157,7 @@
             cell = [[YYMainViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
             
         }
-        cell.singleNewsBO = tableNewsArr[indexPath.row];
+        cell.singleNewsBO = _homeVModel.daysDataList[indexPath.row];
         return cell;
     }
    
@@ -192,7 +166,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    
-    YYSingleNewsBO *singleBO= tableNewsArr[indexPath.row];
+    YYSingleNewsBO *singleBO= _homeVModel.daysDataList[indexPath.row];
     YYWebViewController *webView = [[YYWebViewController alloc] init];
     webView.singleNewsBO = singleBO;
     [self.navigationController pushViewController:webView animated:YES];
@@ -200,21 +174,22 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    id model = [tableNewsArr objectAtIndex:indexPath.row];
+    id model = [_homeVModel.daysDataList objectAtIndex:indexPath.row];
     if ([model isKindOfClass:[NSString class]]) {
-        return 40.f;
+        return kDateLabHeight;
     }
 
-    return 70.f;
+    return kRowHeight;
 }
 
 
 #pragma mark - scrollview delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
+     CGFloat offSetY = scrollView.contentOffset.y;
     if ([scrollView isEqual:mainTableView]) {
     
-        CGFloat offSetY = scrollView.contentOffset.y;
+       
         float h = offSetY / kLimitOffsetY;
         _fakeNavBar.alpha = (h > 1)?1:h;
         
@@ -231,18 +206,18 @@
             _navTitleLab.hidden = NO;
         }
         
-        float todayHeight = latesNewsBO.storiesArray.count*70.f + 220.f;
+        float todayHeight = _homeVModel.latestNewsBO.storiesArray.count*kRowHeight + 174.f;
         if (scrollView.contentOffset.y < todayHeight) {
             self.navBarTitle = @"今日热闻";
             
         }else{
             NSArray *array = [mainTableView indexPathsForVisibleRows];
             NSIndexPath *indexPath = [array firstObject];
-            id model = tableNewsArr[indexPath.row];
+            id model = _homeVModel.daysDataList[indexPath.row];
             
             if ([model isKindOfClass:[NSString class]]) {
                 indexF = indexPath.row;
-                currentDateStr  =  [tableNewsArr objectAtIndex:indexPath.row];
+                currentDateStr  =  [_homeVModel.daysDataList objectAtIndex:indexPath.row];
                 
                 self.navBarTitle = transformDateStr(currentDateStr);
             }
@@ -254,22 +229,27 @@
         
         if (offSetY<=0&&offSetY>=-80) {
             if (-offSetY <= 60) {
-                if (!isLoading) {
+                if (!_homeVModel.isLoading) {
                    [_refreshView redrawFromProgress:-offSetY/60];
                 }else{
                    [_refreshView redrawFromProgress:0];
                 }
             }
-            if(!isLoading && !scrollView.isDragging && -offSetY>40 && -offSetY<=80){
+            if(!_homeVModel.isLoading && !scrollView.isDragging && -offSetY>40 && -offSetY<=80){
                 [_refreshView redrawFromProgress:0];
                 [_refreshView startAnimation];
-                [self requestLatestNewsData];
+                
+                [_homeVModel requestLatestNews:^{
+                    autoLoopView.banners = _homeVModel.daysDataList;
+                    [mainTableView reloadData];
+                    [_loadingView dismissLoadingView];
+                    _loadingView = nil;
+                    
+                    DELAYEXECUTE(1.f, [_refreshView stopAnimation];);
+                    
+                }];
                
-            }
-            
-            
-        }else if(offSetY<-80){
-          //  mainTableView.contentOffset = CGPointMake(0.f, -80.f);
+            }        
         }else if(offSetY <= 300) {
             [_refreshView redrawFromProgress:0];
                    }
@@ -279,6 +259,14 @@
         
         [(YYAutoLoopView *)mainTableView.tableHeaderView yy_parallaxHeaderViewWithOffset:scrollView.contentOffset];
     }
+    
+    if (offSetY + kRowHeight > scrollView.contentSize.height - kScreenHeight) {
+        if (!_homeVModel.isLoading) {
+            [_homeVModel requestPreviousNews:^{
+                [mainTableView reloadData];
+            }];
+        }
+    }
 }
 
 
@@ -286,20 +274,14 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.navBarTitle = @"今日热闻";
-   
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.extendedLayoutIncludesOpaqueBars = YES;
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self requestLatestNewsData];
-    [self addMainTableView];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.extendedLayoutIncludesOpaqueBars = YES;
 
-    [self navigationBarView];
-    [self addFooter];
-   
-    [self.view addSubview:self.loadingView];
+    [self initSubViews];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

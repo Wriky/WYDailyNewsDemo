@@ -13,8 +13,8 @@ UIKIT_EXTERN NSString * const YYRequestGET; // get
 UIKIT_EXTERN NSString * const YYRequestPOST; // post
 
 
-#define KScreenHeight [UIScreen mainScreen].bounds.size.height
-#define KScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 #define kScreenBounds [UIScreen mainScreen].bounds
 #define NavHeight   50.f
 #define TopMinY 64.f
@@ -42,6 +42,7 @@ UIKIT_EXTERN NSString * const YYRequestPOST; // post
 
 #define LightColor_1   [UIColor yy_colorWithColorHexCode:@"#ffffff"]  //内容区域底色
 #define LightColor_2   [UIColor yy_colorWithColorHexCode:@"#f7f8f9"]  //分割模块底色
+#define kNavigationBarColor [UIColor colorWithRed:60.f/255.f green:198.f/255.f blue:253.f/255.f alpha:1.f];
 
 //弱引用
 #define WS(weakSelf)  __weak __typeof(self)weakSelf = self;

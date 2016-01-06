@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YYLatestNewsBO.h"
-#import "XPBannerInfo.h"
+#import "YYHomeViewModel.h"
 
 @interface YYMainViewController : UIViewController
+
+- (instancetype)initWithModel:(YYHomeViewModel *)hvModel;
 
 @end

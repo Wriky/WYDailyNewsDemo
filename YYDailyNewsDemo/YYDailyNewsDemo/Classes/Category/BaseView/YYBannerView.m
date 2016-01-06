@@ -54,8 +54,8 @@
    
         [self yy_setImageWithUrlString:bannerNewsBO.imageUrl placeholderImage:Image(@"tags_selected.png")];
         NSAttributedString *attStr = [[NSAttributedString alloc] initWithString:bannerNewsBO.newsTitle attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:21],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-        CGSize size =  [attStr boundingRectWithSize:CGSizeMake(KScreenWidth-30, AdjustF(200.f)) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;
-        _titleLab.frame = CGRectMake(15, 0, KScreenWidth-30, size.height);
+        CGSize size =  [attStr boundingRectWithSize:CGSizeMake(kScreenWidth-30, AdjustF(200.f)) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;
+        _titleLab.frame = CGRectMake(15, 0, kScreenWidth-30, size.height);
         [_titleLab setBottom:AdjustF(180.f)];
         _titleLab.attributedText = attStr;
     

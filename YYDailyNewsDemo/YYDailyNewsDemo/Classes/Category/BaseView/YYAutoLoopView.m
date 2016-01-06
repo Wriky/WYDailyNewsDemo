@@ -7,7 +7,6 @@
 //
 
 #import "YYAutoLoopView.h"
-#import "XPBannerInfo.h"
 #import "YYBannerView.h"
 #define kDefaultHeaderFrame CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
 #define BannerViewTag 186681
@@ -65,7 +64,7 @@
     _scrollView.delegate = self;
     _scrollView.backgroundColor = [UIColor yellowColor];
     _scrollView.pagingEnabled = YES;
-    _scrollView.contentSize = CGSizeMake(3 * KScreenWidth, 0);
+    _scrollView.contentSize = CGSizeMake(3 * kScreenWidth, 0);
     [self addSubview:_scrollView];
 }
 
@@ -107,14 +106,12 @@
                 cell.bannerNewsBO = [_cells[i] bannerNewsBO];
         cell.tag = i + BannerViewTag;
         cell.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        cell.contentMode = UIViewContentModeScaleAspectFill;
         cell.clickBannerCallBackBlock = [_cells[i] clickBannerCallBackBlock];
-        cell.userInteractionEnabled = YES;
-        CGRect cellFrame = CGRectMake(KScreenWidth * i, 0, KScreenWidth, _scrollView.frame.size.height);
+        CGRect cellFrame = CGRectMake(kScreenWidth * i, 0, kScreenWidth, _scrollView.frame.size.height);
         cell.frame = cellFrame;
         [_scrollView addSubview:cell];
     }
-    _scrollView.contentOffset = CGPointMake(KScreenWidth, 0);
+    _scrollView.contentOffset = CGPointMake(kScreenWidth, 0);
     _pageControl.currentPage = _currentIdx;
     if (_scrollToPageForIndex) {
         _scrollToPageForIndex(_currentIdx);
@@ -248,7 +245,7 @@
         newPoint.y += delta;
         self.clipsToBounds = NO;
         
-        NSUInteger index = _scrollView.contentOffset.x/KScreenWidth;
+        NSUInteger index = _scrollView.contentOffset.x/kScreenWidth;
         YYBannerView *bannerView = [_scrollView viewWithTag:index + BannerViewTag];
         [bannerView.titleLab setBottom:_scrollView.height-25];
         

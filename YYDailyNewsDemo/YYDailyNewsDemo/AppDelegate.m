@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "YYMainViewController.h"
+#import "YYHomeViewModel.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +22,7 @@
     [[UINavigationBar appearance] setBackgroundImage:Image(@"navBar") forBarMetrics:UIBarMetricsDefault];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    YYMainViewController *mainVC = [[YYMainViewController alloc] init];
+    YYMainViewController *mainVC = [[YYMainViewController alloc] initWithModel:[YYHomeViewModel new]];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
     self.window.rootViewController = nav;

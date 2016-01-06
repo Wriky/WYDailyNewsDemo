@@ -16,6 +16,9 @@
 		7BF9A2761C316FAF00DAFF9F /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF9A2751C316FAF00DAFF9F /* UIViewController+Swizzling.m */; };
 		C7ABA2F80F1A2D8363764C45 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76059F50B71C076AFC0B3BD /* libPods.a */; };
 		C908C4C81C33E054008FF8BB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C908C4C71C33E054008FF8BB /* UIView+Extension.m */; };
+		C913CAAE1C3CFE6B00125C9D /* YYManager+LeftMenuInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C913CAAD1C3CFE6B00125C9D /* YYManager+LeftMenuInfo.m */; };
+		C92567191C3D10A800BB99FC /* YYLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92567171C3D10A800BB99FC /* YYLeftMenuViewController.m */; };
+		C925671A1C3D10A800BB99FC /* YYLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92567181C3D10A800BB99FC /* YYLeftMenuViewController.xib */; };
 		C94938111C30FEE200ABC6D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C94938101C30FEE200ABC6D4 /* main.m */; };
 		C94938141C30FEE200ABC6D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C94938131C30FEE200ABC6D4 /* AppDelegate.m */; };
 		C949381C1C30FEE200ABC6D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C949381B1C30FEE200ABC6D4 /* Assets.xcassets */; };
@@ -27,6 +30,7 @@
 		C968AC981C3CAFF1007289A2 /* YYRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C968AC8F1C3CAFF1007289A2 /* YYRefreshFooterView.m */; };
 		C968AC991C3CAFF1007289A2 /* YYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = C968AC911C3CAFF1007289A2 /* YYRefreshView.m */; };
 		C968AC9D1C3CB03A007289A2 /* YYOverallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C968AC9C1C3CB03A007289A2 /* YYOverallViewController.m */; };
+		C968ACA91C3CFC95007289A2 /* YYLeftMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C968ACA81C3CFC95007289A2 /* YYLeftMenuCell.m */; };
 		C9C18F3B1C310A3900E73B12 /* YYHttpMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F3A1C310A3900E73B12 /* YYHttpMgr.m */; };
 		C9C18F3E1C310A7100E73B12 /* YYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F3D1C310A7100E73B12 /* YYManager.m */; };
 		C9C18F451C31167000E73B12 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F441C31167000E73B12 /* UIImage+ImageEffects.m */; };
@@ -34,7 +38,6 @@
 		C9C18F5C1C312D0100E73B12 /* YYManager+MainViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F5B1C312D0100E73B12 /* YYManager+MainViewInfo.m */; };
 		C9C18F681C313C7600E73B12 /* UIColor+YY.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C18F671C313C7600E73B12 /* UIColor+YY.m */; };
 		C9C60FA91C3BC7BB00B28EFF /* YYManager+LaunchImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FA81C3BC7BB00B28EFF /* YYManager+LaunchImage.m */; };
-		C9C60FC01C3BC9B600B28EFF /* XPBannerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FAD1C3BC9B600B28EFF /* XPBannerInfo.m */; };
 		C9C60FC11C3BC9B600B28EFF /* YYDetailNewsBO.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FAF1C3BC9B600B28EFF /* YYDetailNewsBO.m */; };
 		C9C60FC21C3BC9B600B28EFF /* YYLatestNewsBO.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FB11C3BC9B600B28EFF /* YYLatestNewsBO.m */; };
 		C9C60FC31C3BC9B600B28EFF /* YYSingleNewsBO.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FB31C3BC9B600B28EFF /* YYSingleNewsBO.m */; };
@@ -64,6 +67,11 @@
 		A76059F50B71C076AFC0B3BD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C908C4C61C33E054008FF8BB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		C908C4C71C33E054008FF8BB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		C913CAAC1C3CFE6B00125C9D /* YYManager+LeftMenuInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYManager+LeftMenuInfo.h"; sourceTree = "<group>"; };
+		C913CAAD1C3CFE6B00125C9D /* YYManager+LeftMenuInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYManager+LeftMenuInfo.m"; sourceTree = "<group>"; };
+		C92567161C3D10A800BB99FC /* YYLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLeftMenuViewController.h; sourceTree = "<group>"; };
+		C92567171C3D10A800BB99FC /* YYLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYLeftMenuViewController.m; sourceTree = "<group>"; };
+		C92567181C3D10A800BB99FC /* YYLeftMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYLeftMenuViewController.xib; sourceTree = "<group>"; };
 		C949380C1C30FEE200ABC6D4 /* YYDailyNewsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYDailyNewsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94938101C30FEE200ABC6D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C94938121C30FEE200ABC6D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -85,6 +93,8 @@
 		C968AC911C3CAFF1007289A2 /* YYRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYRefreshView.m; sourceTree = "<group>"; };
 		C968AC9B1C3CB03A007289A2 /* YYOverallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYOverallViewController.h; sourceTree = "<group>"; };
 		C968AC9C1C3CB03A007289A2 /* YYOverallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYOverallViewController.m; sourceTree = "<group>"; };
+		C968ACA71C3CFC95007289A2 /* YYLeftMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLeftMenuCell.h; sourceTree = "<group>"; };
+		C968ACA81C3CFC95007289A2 /* YYLeftMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYLeftMenuCell.m; sourceTree = "<group>"; };
 		C9C18F2C1C3100D000E73B12 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C9C18F391C310A3900E73B12 /* YYHttpMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYHttpMgr.h; sourceTree = "<group>"; };
 		C9C18F3A1C310A3900E73B12 /* YYHttpMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYHttpMgr.m; sourceTree = "<group>"; };
@@ -101,8 +111,6 @@
 		C9C18F671C313C7600E73B12 /* UIColor+YY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YY.m"; sourceTree = "<group>"; };
 		C9C60FA71C3BC7BB00B28EFF /* YYManager+LaunchImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYManager+LaunchImage.h"; sourceTree = "<group>"; };
 		C9C60FA81C3BC7BB00B28EFF /* YYManager+LaunchImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYManager+LaunchImage.m"; sourceTree = "<group>"; };
-		C9C60FAC1C3BC9B600B28EFF /* XPBannerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPBannerInfo.h; sourceTree = "<group>"; };
-		C9C60FAD1C3BC9B600B28EFF /* XPBannerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPBannerInfo.m; sourceTree = "<group>"; };
 		C9C60FAE1C3BC9B600B28EFF /* YYDetailNewsBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDetailNewsBO.h; sourceTree = "<group>"; };
 		C9C60FAF1C3BC9B600B28EFF /* YYDetailNewsBO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDetailNewsBO.m; sourceTree = "<group>"; };
 		C9C60FB01C3BC9B600B28EFF /* YYLatestNewsBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLatestNewsBO.h; sourceTree = "<group>"; };
@@ -191,6 +199,7 @@
 				C968AC811C3CAFF1007289A2 /* BaseView */,
 				C968AC9A1C3CB03A007289A2 /* OverallVC */,
 				C9C60FAA1C3BC9B600B28EFF /* HomePage */,
+				C968AC9F1C3CFA01007289A2 /* LeftMenu */,
 				C9C18F381C310A0E00E73B12 /* Manager */,
 				7BF9A2661C316C7900DAFF9F /* Libs */,
 				7BF9A2601C316A5A00DAFF9F /* Resource */,
@@ -243,6 +252,52 @@
 			path = Classes/OverallVC;
 			sourceTree = "<group>";
 		};
+		C968AC9F1C3CFA01007289A2 /* LeftMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C968ACA01C3CFA42007289A2 /* Model */,
+				C968ACA31C3CFA42007289A2 /* ViewModel */,
+				C968ACA11C3CFA42007289A2 /* View */,
+				C968ACA21C3CFA42007289A2 /* ViewController */,
+			);
+			name = LeftMenu;
+			path = Classes/LeftMenu;
+			sourceTree = "<group>";
+		};
+		C968ACA01C3CFA42007289A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C968ACA11C3CFA42007289A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C968ACA71C3CFC95007289A2 /* YYLeftMenuCell.h */,
+				C968ACA81C3CFC95007289A2 /* YYLeftMenuCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C968ACA21C3CFA42007289A2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C92567161C3D10A800BB99FC /* YYLeftMenuViewController.h */,
+				C92567171C3D10A800BB99FC /* YYLeftMenuViewController.m */,
+				C92567181C3D10A800BB99FC /* YYLeftMenuViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C968ACA31C3CFA42007289A2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModel;
+			path = YYDailyNewsDemo/Classes/LeftMenu/ViewModel;
+			sourceTree = SOURCE_ROOT;
+		};
 		C9C18F2F1C3101D300E73B12 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +343,8 @@
 				C9C18F5B1C312D0100E73B12 /* YYManager+MainViewInfo.m */,
 				C9C60FA71C3BC7BB00B28EFF /* YYManager+LaunchImage.h */,
 				C9C60FA81C3BC7BB00B28EFF /* YYManager+LaunchImage.m */,
+				C913CAAC1C3CFE6B00125C9D /* YYManager+LeftMenuInfo.h */,
+				C913CAAD1C3CFE6B00125C9D /* YYManager+LeftMenuInfo.m */,
 			);
 			path = YYHttpRequest;
 			sourceTree = "<group>";
@@ -307,8 +364,6 @@
 		C9C60FAB1C3BC9B600B28EFF /* Mode */ = {
 			isa = PBXGroup;
 			children = (
-				C9C60FAC1C3BC9B600B28EFF /* XPBannerInfo.h */,
-				C9C60FAD1C3BC9B600B28EFF /* XPBannerInfo.m */,
 				C9C60FAE1C3BC9B600B28EFF /* YYDetailNewsBO.h */,
 				C9C60FAF1C3BC9B600B28EFF /* YYDetailNewsBO.m */,
 				C9C60FB01C3BC9B600B28EFF /* YYLatestNewsBO.h */,
@@ -439,6 +494,7 @@
 			files = (
 				7BF9A2621C316A8400DAFF9F /* Resource.bundle in Resources */,
 				C949381C1C30FEE200ABC6D4 /* Assets.xcassets in Resources */,
+				C925671A1C3D10A800BB99FC /* YYLeftMenuViewController.xib in Resources */,
 				C968AC921C3CAFF1007289A2 /* LoadingAnimation.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,12 +542,14 @@
 				C9C18F451C31167000E73B12 /* UIImage+ImageEffects.m in Sources */,
 				C9C60FCC1C3BC9FF00B28EFF /* YYToolKit.m in Sources */,
 				C968AC961C3CAFF1007289A2 /* YYBottomBarView.m in Sources */,
+				C913CAAE1C3CFE6B00125C9D /* YYManager+LeftMenuInfo.m in Sources */,
 				C9C18F3B1C310A3900E73B12 /* YYHttpMgr.m in Sources */,
 				C968AC951C3CAFF1007289A2 /* YYBannerView.m in Sources */,
 				C968AC991C3CAFF1007289A2 /* YYRefreshView.m in Sources */,
 				7BF9A26C1C316CA900DAFF9F /* NJKWebViewProgress.m in Sources */,
 				7BF9A2731C316DEE00DAFF9F /* UIBarButtonItem+XP.m in Sources */,
 				7BF9A2761C316FAF00DAFF9F /* UIViewController+Swizzling.m in Sources */,
+				C92567191C3D10A800BB99FC /* YYLeftMenuViewController.m in Sources */,
 				C908C4C81C33E054008FF8BB /* UIView+Extension.m in Sources */,
 				C9C60FC31C3BC9B600B28EFF /* YYSingleNewsBO.m in Sources */,
 				C968AC9D1C3CB03A007289A2 /* YYOverallViewController.m in Sources */,
@@ -500,7 +558,6 @@
 				C9C60FC81C3BC9B600B28EFF /* YYWebViewController.m in Sources */,
 				7BF9A26D1C316CA900DAFF9F /* NJKWebViewProgressView.m in Sources */,
 				C9C60FC71C3BC9B600B28EFF /* YYMainViewController.m in Sources */,
-				C9C60FC01C3BC9B600B28EFF /* XPBannerInfo.m in Sources */,
 				C94938141C30FEE200ABC6D4 /* AppDelegate.m in Sources */,
 				C9C18F481C311A4700E73B12 /* UIImageView+YYImg.m in Sources */,
 				C9C18F3E1C310A7100E73B12 /* YYManager.m in Sources */,
@@ -513,6 +570,7 @@
 				C9C60FC21C3BC9B600B28EFF /* YYLatestNewsBO.m in Sources */,
 				C9C18F5C1C312D0100E73B12 /* YYManager+MainViewInfo.m in Sources */,
 				C9C60FC11C3BC9B600B28EFF /* YYDetailNewsBO.m in Sources */,
+				C968ACA91C3CFC95007289A2 /* YYLeftMenuCell.m in Sources */,
 				C9C18F681C313C7600E73B12 /* UIColor+YY.m in Sources */,
 				C9C60FC51C3BC9B600B28EFF /* YYDateCell.m in Sources */,
 				C968AC941C3CAFF1007289A2 /* YYAutoLoopView.m in Sources */,

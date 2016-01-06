@@ -21,7 +21,7 @@
 }
 
 - (void)configUI:(CGRect)frame{
-    UIImageView *barBackV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 50.f)];
+    UIImageView *barBackV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50.f)];
     barBackV.backgroundColor = [UIColor whiteColor];
     barBackV.layer.shadowOffset = CGSizeMake(0, - 4.f);
     barBackV.layer.shadowColor = RGBColor(198.f, 198.f, 198.f, 1).CGColor;
@@ -33,7 +33,7 @@
     for (NSUInteger i=0; i<imgArr.count; i++) {
         UIButton *button = [UIButton buttonWithType:0];
         button.tag = BOTTOM_BAR_TAG + i;
-        NSInteger leftWidth= (KScreenWidth/5-50)/2;
+        NSInteger leftWidth= (kScreenWidth/5-50)/2;
         button.frame = CGRectMake(leftWidth+(50.f+2*leftWidth)*i, 0, 50.f, 50.f);
         [button setImage:Image(imgArr[i]) forState:0];
         [button addTarget:self action:@selector(selectBtn:) forControlEvents:1<<6];

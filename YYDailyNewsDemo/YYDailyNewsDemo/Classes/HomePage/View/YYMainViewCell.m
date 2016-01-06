@@ -23,10 +23,10 @@
 
 - (void)configUI{
    
-    _newsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth - 60.f, 10.f, 50.f, 50.f)];
+    _newsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - 60.f, 10.f, 50.f, 50.f)];
     [self.contentView addSubview:_newsImageView];
     
-    _newsTitleLbl = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 6.f, KScreenWidth-90.f, 60.f)];
+    _newsTitleLbl = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 6.f, kScreenWidth-90.f, 60.f)];
     _newsTitleLbl.numberOfLines = 3;
     _newsTitleLbl.textColor = StandardColor_2;
     _newsTitleLbl.textAlignment = NSTextAlignmentLeft;
