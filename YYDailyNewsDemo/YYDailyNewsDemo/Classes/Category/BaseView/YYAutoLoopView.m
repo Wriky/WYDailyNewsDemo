@@ -14,6 +14,7 @@
 @interface YYAutoLoopView () <UIScrollViewDelegate>
 {
     BOOL _isHasBanners;
+    CGPoint paraxPoint;
 }
 @property (nonatomic, assign) int currentIdx;
 @property (nonatomic, assign) int pagesCount;
@@ -108,7 +109,10 @@
         cell.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         cell.clickBannerCallBackBlock = [_cells[i] clickBannerCallBackBlock];
         CGRect cellFrame = CGRectMake(kScreenWidth * i, 0, kScreenWidth, _scrollView.frame.size.height);
+        
         cell.frame = cellFrame;
+        cell.titleLab.bottom = _scrollView.bottom-AdjustF(20.f)-paraxPoint.y;
+        
         [_scrollView addSubview:cell];
     }
     _scrollView.contentOffset = CGPointMake(kScreenWidth, 0);
@@ -181,7 +185,7 @@
        
         cell.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         cell.contentMode = UIViewContentModeScaleAspectFill;
-
+ 
         cell.bannerNewsBO = bannerBO;
         cell.clickBannerCallBackBlock = ^(YYSingleNewsBO *bannerNewsBO){
                 if (_clickAutoLoopCallBackBlock) {
@@ -189,7 +193,6 @@
                 }
        
         };
-        
         [cells addObject:cell];
     }];
     
@@ -228,12 +231,20 @@
 }
 
 - (void)yy_parallaxHeaderViewWithOffset:(CGPoint)offset{
+    paraxPoint = offset;
     CGRect frame = _scrollView.frame;
     if (offset.y > 0) {
         
         frame.origin.y = MAX(offset.y/2, 0);
         _scrollView.frame = frame;
         self.clipsToBounds = YES;
+    
+        NSUInteger index = _scrollView.contentOffset.x/kScreenWidth;
+        for (NSInteger i=-1; i<3; i++) {
+            YYBannerView *bannerView = [_scrollView viewWithTag:index+i + BannerViewTag];
+            [bannerView.titleLab setBottom:_scrollView.bottom-offset.y-AdjustF(20.f)];
+        }
+      
     }else{
         CGFloat delta = 0.f;
         CGRect rect = kDefaultHeaderFrame;
@@ -247,7 +258,7 @@
         
         NSUInteger index = _scrollView.contentOffset.x/kScreenWidth;
         YYBannerView *bannerView = [_scrollView viewWithTag:index + BannerViewTag];
-        [bannerView.titleLab setBottom:_scrollView.height-25];
+        [bannerView.titleLab setBottom:_scrollView.height-AdjustF(20.f)];
         
         
     }

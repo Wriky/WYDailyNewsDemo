@@ -41,6 +41,16 @@ NSString* ResourcePath(NSString* fileName)
     return [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat:@"/%@", fileName];
 }
 
+NSString *stringConvertToTitleText(NSString *str){
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyyMMdd"];
+    NSDate *date = [formatter dateFromString:str];
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CH"];
+    [formatter setDateFormat:@"yyyy年MM月dd日 EEEE"];
+    NSString *titleTxt = [formatter stringFromDate:date];
+    return titleTxt;
+}
+
 NSString *transformDateStr(NSString *dateStr){
     NSString *transformStr = nil;
     

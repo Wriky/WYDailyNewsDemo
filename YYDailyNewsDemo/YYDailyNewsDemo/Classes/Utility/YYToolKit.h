@@ -62,6 +62,7 @@ extern NSString* FilePath(NSString* fileName);
 //获取资源全路径
 NSString* ResourcePath(NSString* fileName);
 
+NSString *stringConvertToTitleText(NSString *str);
 //日期转换
 NSString *transformDateStr(NSString *dateStr);
 

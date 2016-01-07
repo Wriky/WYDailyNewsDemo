@@ -56,6 +56,7 @@
     
     [_homeVModel requestLatestNews:^{
         autoLoopView.banners = _homeVModel.topScrollArr;
+         [mainTableView setTableHeaderView:autoLoopView];
         [mainTableView reloadData];
         [_loadingView dismissLoadingView];
         _loadingView = nil;
@@ -109,7 +110,7 @@
         webView.singleNewsBO = bannerNews;
         [weakSelf.navigationController pushViewController:webView animated:YES];
     };
-    [mainTableView setTableHeaderView:autoLoopView];
+   
 }
 
 - (YYLoadingView *)loadingView{
@@ -206,7 +207,7 @@
             _navTitleLab.hidden = NO;
         }
         
-        float todayHeight = _homeVModel.latestNewsBO.storiesArray.count*kRowHeight + 174.f;
+        float todayHeight = _homeVModel.latestNewsBO.storiesArray.count*kRowHeight + AdjustF(200.f);
         if (scrollView.contentOffset.y < todayHeight) {
             self.navBarTitle = @"今日热闻";
             

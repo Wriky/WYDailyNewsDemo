@@ -35,12 +35,13 @@
 }
 
 - (void)requestPreviousNews:(ReqComplement)reqComplement{
-    
+     _isLoading = YES;
     [YYManager yy_getPreviousNewsWithDate:_beforeDateStr Success:^(YYLatestNewsBO *newsBO) {
         [_daysDataList addObject:newsBO.date];
         [_daysDataList addObjectsFromArray:newsBO.storiesArray];
         
         _beforeDateStr = newsBO.date;
+        _isLoading = NO;
         reqComplement();
     } Failure:^(YYError *error) {
         
