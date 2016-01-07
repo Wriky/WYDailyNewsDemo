@@ -13,6 +13,7 @@
 + (void)yy_getThemeListWithField:(NSString *)fieldTxt
                        Success:(yy_reqSuccessBlock)success
                        Failure:(yy_reqFailureBlock)failure{
+    
     [YYManager yy_reqWithMethod:YYRequestGET urlStr:fieldTxt params:nil class:nil success:^(id data) {
         
         success(data);

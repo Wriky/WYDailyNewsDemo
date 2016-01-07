@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YYMainViewController.h"
+#import "YYLeftMenuViewController.h"
 
 @interface YYOverallViewController : UIViewController
 

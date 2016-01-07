@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 
-#define IP_HEADER @"http://news-at.zhihu.com/api/4/news/"
+#define IP_HEADER @"http://news-at.zhihu.com/api/4/"
 

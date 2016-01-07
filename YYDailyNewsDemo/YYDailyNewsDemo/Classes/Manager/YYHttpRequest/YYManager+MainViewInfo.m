@@ -15,7 +15,9 @@
                             Success:(GetMainViewInfoSuccessBlock)success
                             Failure:(yy_reqFailureBlock)failure{
   
-    [YYManager yy_reqWithMethod:YYRequestGET urlStr:fieldTxt params:nil class:NSClassFromString(@"YYLatestNewsBO") success:^(id data) {
+    NSString *appendStr = [NSString stringWithFormat:@"news/%@",fieldTxt];
+
+    [YYManager yy_reqWithMethod:YYRequestGET urlStr:appendStr params:nil class:NSClassFromString(@"YYLatestNewsBO") success:^(id data) {
         
         success(data);
     } failure:^(YYError *error) {
@@ -26,7 +28,9 @@
 + (void)yy_getNewsDetailWithID:(NSString *)newsId
                       Success:(GetNewsDetailSuccessBlock)success
                       Failure:(yy_reqFailureBlock)failure{
-    [YYManager yy_reqWithMethod:YYRequestGET urlStr:newsId params:nil class:NSClassFromString(@"YYDetailNewsBO") success:^(id data) {
+    
+    NSString *appendStr = [NSString stringWithFormat:@"news/%@",newsId];
+    [YYManager yy_reqWithMethod:YYRequestGET urlStr:appendStr params:nil class:NSClassFromString(@"YYDetailNewsBO") success:^(id data) {
 
         success(data);
     } failure:^(YYError *error) {
@@ -38,7 +42,7 @@
 + (void)yy_getPreviousNewsWithDate:(NSString *)dateStr
                            Success:(GetMainViewInfoSuccessBlock)success
                            Failure:(yy_reqFailureBlock)failure{
-    NSString *appendStr = [NSString stringWithFormat:@"before/%@",dateStr];
+    NSString *appendStr = [NSString stringWithFormat:@"news/before/%@",dateStr];
     [YYManager yy_reqWithMethod:YYRequestGET urlStr:appendStr params:nil class:NSClassFromString(@"YYLatestNewsBO") success:^(id data) {
         success(data);
     } failure:^(YYError *error) {

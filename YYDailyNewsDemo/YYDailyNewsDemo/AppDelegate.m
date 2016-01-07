@@ -9,8 +9,12 @@
 #import "AppDelegate.h"
 #import "YYMainViewController.h"
 #import "YYHomeViewModel.h"
+#import "YYManager+LaunchImage.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong)UIImageView *firstLaunchView;
+@property (nonatomic, strong)UIImageView *secondLaunchView;
 
 @end
 
@@ -30,7 +34,35 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self setLaunchView];
     return YES;
+}
+
+- (void)setLaunchView{
+    
+    _secondLaunchView = [[UIImageView alloc] initWithFrame:kScreenBounds];
+    _secondLaunchView.contentMode = UIViewContentModeScaleAspectFill;
+    [self.window addSubview:_secondLaunchView];
+    
+    _firstLaunchView = [[UIImageView alloc] initWithFrame:kScreenBounds];
+    _firstLaunchView.contentMode = UIViewContentModeScaleAspectFill;
+    _firstLaunchView.image = Image(@"Default");
+    [self.window addSubview:_firstLaunchView];
+    
+    [YYManager yy_getLaunchImageWithSize:@"720*1184" Success:^(id data) {
+        [_secondLaunchView yy_setImageWithUrlString:data[@"img"] placeholderImage:nil];
+        [UIView animateWithDuration:2.f animations:^{
+            _firstLaunchView.alpha = 0.f;
+            _secondLaunchView.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+        } completion:^(BOOL finished) {
+            [_firstLaunchView removeFromSuperview];
+            [_secondLaunchView removeFromSuperview];
+        }];
+    } Failure:^(YYError *error) {
+        [_firstLaunchView removeFromSuperview];
+        [_secondLaunchView removeFromSuperview];
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
