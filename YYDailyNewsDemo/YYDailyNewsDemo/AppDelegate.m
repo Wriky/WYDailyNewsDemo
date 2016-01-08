@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "YYMainViewController.h"
+#import "YYHomeViewController.h"
 #import "YYHomeViewModel.h"
 #import "YYManager+LaunchImage.h"
 
@@ -26,10 +26,14 @@
     [[UINavigationBar appearance] setBackgroundImage:Image(@"navBar") forBarMetrics:UIBarMetricsDefault];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    YYMainViewController *mainVC = [[YYMainViewController alloc] initWithModel:[YYHomeViewModel new]];
+    YYHomeViewController *homeVC = [[YYHomeViewController alloc] initWithModel:[YYHomeViewModel new]];
+    UINavigationController *homeNav = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    YYLeftMenuViewController *leftMenuVC = [[YYLeftMenuViewController alloc] init];
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
-    self.window.rootViewController = nav;
+    _overallVC = [[YYOverallViewController alloc] initWithLeftCtrl:leftMenuVC MainCtrl:homeNav];
+    
+   
+    self.window.rootViewController = _overallVC;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

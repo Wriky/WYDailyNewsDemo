@@ -43,7 +43,7 @@
 		C9C60FC31C3BC9B600B28EFF /* YYSingleNewsBO.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FB31C3BC9B600B28EFF /* YYSingleNewsBO.m */; };
 		C9C60FC51C3BC9B600B28EFF /* YYDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FB81C3BC9B600B28EFF /* YYDateCell.m */; };
 		C9C60FC61C3BC9B600B28EFF /* YYMainViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FBA1C3BC9B600B28EFF /* YYMainViewCell.m */; };
-		C9C60FC71C3BC9B600B28EFF /* YYMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FBD1C3BC9B600B28EFF /* YYMainViewController.m */; };
+		C9C60FC71C3BC9B600B28EFF /* YYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FBD1C3BC9B600B28EFF /* YYHomeViewController.m */; };
 		C9C60FC81C3BC9B600B28EFF /* YYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FBF1C3BC9B600B28EFF /* YYWebViewController.m */; };
 		C9C60FCC1C3BC9FF00B28EFF /* YYToolKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FCB1C3BC9FF00B28EFF /* YYToolKit.m */; };
 		C9C60FD41C3BCC4C00B28EFF /* YYHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C60FD31C3BCC4C00B28EFF /* YYHomeViewModel.m */; };
@@ -121,8 +121,8 @@
 		C9C60FB81C3BC9B600B28EFF /* YYDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDateCell.m; sourceTree = "<group>"; };
 		C9C60FB91C3BC9B600B28EFF /* YYMainViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMainViewCell.h; sourceTree = "<group>"; };
 		C9C60FBA1C3BC9B600B28EFF /* YYMainViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMainViewCell.m; sourceTree = "<group>"; };
-		C9C60FBC1C3BC9B600B28EFF /* YYMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMainViewController.h; sourceTree = "<group>"; };
-		C9C60FBD1C3BC9B600B28EFF /* YYMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMainViewController.m; sourceTree = "<group>"; };
+		C9C60FBC1C3BC9B600B28EFF /* YYHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYHomeViewController.h; sourceTree = "<group>"; };
+		C9C60FBD1C3BC9B600B28EFF /* YYHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYHomeViewController.m; sourceTree = "<group>"; };
 		C9C60FBE1C3BC9B600B28EFF /* YYWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebViewController.h; sourceTree = "<group>"; };
 		C9C60FBF1C3BC9B600B28EFF /* YYWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebViewController.m; sourceTree = "<group>"; };
 		C9C60FCA1C3BC9FF00B28EFF /* YYToolKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYToolKit.h; sourceTree = "<group>"; };
@@ -199,6 +199,7 @@
 				C968AC811C3CAFF1007289A2 /* BaseView */,
 				C968AC9A1C3CB03A007289A2 /* OverallVC */,
 				C9C60FAA1C3BC9B600B28EFF /* HomePage */,
+				C94F613E1C3FBD1D00E03BD8 /* NewsDetailPage */,
 				C968AC9F1C3CFA01007289A2 /* LeftMenu */,
 				C9C18F381C310A0E00E73B12 /* Manager */,
 				7BF9A2661C316C7900DAFF9F /* Libs */,
@@ -219,6 +220,14 @@
 				C9C18F2C1C3100D000E73B12 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C94F613E1C3FBD1D00E03BD8 /* NewsDetailPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NewsDetailPage;
+			path = Classes/NewsDetailPage;
 			sourceTree = "<group>";
 		};
 		C968AC811C3CAFF1007289A2 /* BaseView */ = {
@@ -388,8 +397,8 @@
 		C9C60FBB1C3BC9B600B28EFF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C9C60FBC1C3BC9B600B28EFF /* YYMainViewController.h */,
-				C9C60FBD1C3BC9B600B28EFF /* YYMainViewController.m */,
+				C9C60FBC1C3BC9B600B28EFF /* YYHomeViewController.h */,
+				C9C60FBD1C3BC9B600B28EFF /* YYHomeViewController.m */,
 				C9C60FBE1C3BC9B600B28EFF /* YYWebViewController.h */,
 				C9C60FBF1C3BC9B600B28EFF /* YYWebViewController.m */,
 			);
@@ -557,7 +566,7 @@
 				C9C60FD41C3BCC4C00B28EFF /* YYHomeViewModel.m in Sources */,
 				C9C60FC81C3BC9B600B28EFF /* YYWebViewController.m in Sources */,
 				7BF9A26D1C316CA900DAFF9F /* NJKWebViewProgressView.m in Sources */,
-				C9C60FC71C3BC9B600B28EFF /* YYMainViewController.m in Sources */,
+				C9C60FC71C3BC9B600B28EFF /* YYHomeViewController.m in Sources */,
 				C94938141C30FEE200ABC6D4 /* AppDelegate.m in Sources */,
 				C9C18F481C311A4700E73B12 /* UIImageView+YYImg.m in Sources */,
 				C9C18F3E1C310A7100E73B12 /* YYManager.m in Sources */,

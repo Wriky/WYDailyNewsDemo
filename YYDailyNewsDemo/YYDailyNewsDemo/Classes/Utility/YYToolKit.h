@@ -30,6 +30,9 @@ UIKIT_EXTERN NSString * const YYRequestPOST; // post
 #endif
 #endif
 
+//AppDelegate
+#define kAppdelegate (AppDelegate *)[UIApplication sharedApplication].delegate;
+
 // 延迟调用
 #define DELAYEXECUTE(delayTime,func) (dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{func;}))
 

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YYMainViewController.h"
+#import "YYHomeViewController.h"
 #import "YYLeftMenuViewController.h"
 
 @interface YYOverallViewController : UIViewController
+
+- (instancetype)initWithLeftCtrl:(YYLeftMenuViewController *)leftMenuVC MainCtrl:(UIViewController *)homeVC;
 
 @end

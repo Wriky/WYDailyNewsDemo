@@ -1,12 +1,12 @@
 //
-//  YYMainViewController.m
+//  YYHomeViewController.m
 //  YYDailyNewsDemo
 //
 //  Created by REiFON-MAC on 15/12/28.
 //  Copyright © 2015年 L. All rights reserved.
 //
 
-#import "YYMainViewController.h"
+#import "YYHomeViewController.h"
 #import "YYManager+MainViewInfo.h"
 #import "YYMainViewCell.h"
 #import "YYDateCell.h"
@@ -20,10 +20,9 @@
 #define kRowHeight 70.f
 #define kDateLabHeight 36.f;
 
-@interface YYMainViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface YYHomeViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *mainTableView;
-    UIView  *_fakeNavBar;//假的导航
     UILabel *_navTitleLab;
     NSUInteger indexF;
     NSString *currentDateStr;
@@ -34,7 +33,7 @@
 @property (nonatomic, strong)YYHomeViewModel *homeVModel;
 @end
 
-@implementation YYMainViewController
+@implementation YYHomeViewController
 
 #pragma mark -Init
 - (instancetype)initWithModel:(YYHomeViewModel *)hvModel{
