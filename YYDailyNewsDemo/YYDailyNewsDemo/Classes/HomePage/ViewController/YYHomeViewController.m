@@ -10,15 +10,16 @@
 #import "YYManager+MainViewInfo.h"
 #import "YYMainViewCell.h"
 #import "YYDateCell.h"
-#import "YYWebViewController.h"
+#import "YYDetailPageController.h"
 #import "YYRefreshFooterView.h"
 #import "YYLoadingView.h"
 #import "YYRefreshView.h"
 #import "YYAutoLoopView.h"
+#import "YYSectionTitleView.h"
 
 #define kLimitOffsetY sizeForDevices(165, 165, 200, 220)
 #define kRowHeight 70.f
-#define kDateLabHeight 36.f;
+#define kSectionHeight 36.f
 
 @interface YYHomeViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -71,7 +72,7 @@
     mainTableView.delegate = self;
     mainTableView.dataSource = self;
     [self.view addSubview:mainTableView];
-    
+    [mainTableView registerClass:[YYSectionTitleView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([YYSectionTitleView class])];
 }
 
 
@@ -90,7 +91,7 @@
     _navTitleLab.textColor = LightColor_1;
     _navTitleLab.text = @"今日热闻";
     [_navTitleLab sizeToFit];
-    [_navTitleLab setCenter:CGPointMake(self.view.centerX, 38.f)];
+    [_navTitleLab setCenter:CGPointMake(self.view.centerX, 41.8f)];
     [self.view addSubview:_navTitleLab];
     
     _refreshView = [[YYRefreshView alloc] initWithFrame:CGRectMake(_navTitleLab.left-20.f, _navTitleLab.centerY-10.f, 20.f, 20.f)];
@@ -105,7 +106,7 @@
 
     autoLoopView.clickAutoLoopCallBackBlock = ^(YYSingleNewsBO *bannerNews){
         
-        YYWebViewController *webView = [[YYWebViewController alloc] init];
+        YYDetailPageController *webView = [[YYDetailPageController alloc] init];
         webView.singleNewsBO = bannerNews;
         [weakSelf.navigationController pushViewController:webView animated:YES];
     };
@@ -127,59 +128,57 @@
 
 
 #pragma mark - Delegate
-#pragma mark - UITableViewDataSource and Delegate
+#pragma mark - UITableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return [_homeVModel numberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _homeVModel.daysDataList.count;
+    return [_homeVModel numberOfRowsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    id model = [_homeVModel.daysDataList objectAtIndex:indexPath.row];
-    if ([model isKindOfClass:[NSString class]]) {
-        static NSString *cellIndentifier = @"YYDateCell";
-        YYDateCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-        if (nil == cell) {
-            cell = [[YYDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-            
-        }
-        cell.dateStr = [_homeVModel.daysDataList objectAtIndex:indexPath.row];
-        return cell;
-    }
-    
-    if ([model isKindOfClass:[YYSingleNewsBO class]]) {
+ 
         static NSString *cellIndentifier = @"YYMainViewCell";
         YYMainViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
         if (nil == cell) {
             cell = [[YYMainViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
             
         }
-        cell.singleNewsBO = _homeVModel.daysDataList[indexPath.row];
+        cell.singleNewsBO = [_homeVModel newsAtIndexPath:indexPath];
         return cell;
-    }
-   
-    return nil;
-}
+  }
 
+
+#pragma mark - UITableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    
-    YYSingleNewsBO *singleBO= _homeVModel.daysDataList[indexPath.row];
-    YYWebViewController *webView = [[YYWebViewController alloc] init];
+    YYSingleNewsBO *singleBO= [_homeVModel newsAtIndexPath:indexPath];
+    YYDetailPageController *webView = [[YYDetailPageController alloc] init];
     webView.singleNewsBO = singleBO;
     [self.navigationController pushViewController:webView animated:YES];
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    id model = [_homeVModel.daysDataList objectAtIndex:indexPath.row];
-    if ([model isKindOfClass:[NSString class]]) {
-        return kDateLabHeight;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return CGFLOAT_MIN;
     }
+    return kSectionHeight;
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return kRowHeight;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return nil;
+    }
+    
+    YYSectionTitleView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([YYSectionTitleView class])];
+    headerView.textLabel.text = [_homeVModel titleForSection:section];
+    return headerView;
 }
 
 
@@ -189,7 +188,6 @@
      CGFloat offSetY = scrollView.contentOffset.y;
     if ([scrollView isEqual:mainTableView]) {
     
-       
         float h = offSetY / kLimitOffsetY;
         _fakeNavBar.alpha = (h > 1)?1:h;
         
@@ -213,26 +211,18 @@
         }else{
             NSArray *array = [mainTableView indexPathsForVisibleRows];
             NSIndexPath *indexPath = [array firstObject];
-            id model = _homeVModel.daysDataList[indexPath.row];
+            YYLatestNewsBO *currentBO = _homeVModel.daysDataList[indexPath.section];
+            self.navBarTitle = transformDateStr(currentBO.date);
             
-            if ([model isKindOfClass:[NSString class]]) {
-                indexF = indexPath.row;
-                currentDateStr  =  [_homeVModel.daysDataList objectAtIndex:indexPath.row];
-                
-                self.navBarTitle = transformDateStr(currentDateStr);
-            }
-            
-            if (indexPath.row < indexF) {
-                self.navBarTitle = getPreviousDate(currentDateStr);
-            }
-        }
+            scrollView.contentInset = UIEdgeInsetsMake(TopMinY-kSectionHeight, 0, 0, 0);
+    }
         
         if (offSetY<=0&&offSetY>=-80) {
             if (-offSetY <= 60) {
                 if (!_homeVModel.isLoading) {
-                   [_refreshView redrawFromProgress:-offSetY/60];
+                    [_refreshView redrawFromProgress:-offSetY/60];
                 }else{
-                   [_refreshView redrawFromProgress:0];
+                    [_refreshView redrawFromProgress:0];
                 }
             }
             if(!_homeVModel.isLoading && !scrollView.isDragging && -offSetY>40 && -offSetY<=80){
@@ -248,11 +238,11 @@
                     DELAYEXECUTE(1.f, [_refreshView stopAnimation];);
                     
                 }];
-               
-            }        
+                
+            }
         }else if(offSetY <= 300) {
             [_refreshView redrawFromProgress:0];
-                   }
+        }
     }
     
     if (scrollView == mainTableView){
@@ -270,6 +260,8 @@
 }
 
 
+
+
 #pragma mark - View Load
 - (void)viewDidLoad {
     
@@ -279,7 +271,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
 
+    
     [self initSubViews];
+    
 }
 
 

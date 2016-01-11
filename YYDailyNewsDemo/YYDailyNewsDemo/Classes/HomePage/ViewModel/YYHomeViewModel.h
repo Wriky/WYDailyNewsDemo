@@ -19,10 +19,14 @@ typedef void(^ReqComplement)();
 
 @property (nonatomic, readonly, strong)NSMutableArray *newsIDArray;
 @property (nonatomic, readonly, assign)BOOL isLoading;
-@property (nonatomic, copy)NSString *beforeDateStr;
+
 
 - (void)requestLatestNews:(ReqComplement)reqComplement;
-
 - (void)requestPreviousNews:(ReqComplement)reqComplement;
 
+
+- (NSUInteger)numberOfSections;
+- (NSUInteger)numberOfRowsInSection:(NSUInteger)section;
+- (NSString *)titleForSection:(NSInteger)section;
+- (YYSingleNewsBO *)newsAtIndexPath:(NSIndexPath *)indexPath;
 @end

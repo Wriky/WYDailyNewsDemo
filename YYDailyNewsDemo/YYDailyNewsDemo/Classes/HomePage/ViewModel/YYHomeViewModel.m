@@ -13,6 +13,7 @@
 
 @interface YYHomeViewModel ()
 
+@property (nonatomic, copy)NSString *beforeDateStr;
 
 @end
 
@@ -26,7 +27,7 @@
         _latestNewsBO = newsBO;
         _topScrollArr = newsBO.topStoriesArray;
         _daysDataList = [[NSMutableArray alloc] init];
-        [_daysDataList addObjectsFromArray:newsBO.storiesArray];
+        [_daysDataList addObject:newsBO];
         _beforeDateStr = newsBO.date;
         _isLoading = NO;
         reqComplement();
@@ -37,8 +38,7 @@
 - (void)requestPreviousNews:(ReqComplement)reqComplement{
      _isLoading = YES;
     [YYManager yy_getPreviousNewsWithDate:_beforeDateStr Success:^(YYLatestNewsBO *newsBO) {
-        [_daysDataList addObject:newsBO.date];
-        [_daysDataList addObjectsFromArray:newsBO.storiesArray];
+        [_daysDataList addObject:newsBO];
         
         _beforeDateStr = newsBO.date;
         _isLoading = NO;
@@ -47,6 +47,29 @@
         
     }];
 }
+
+#pragma mark - calculate
+- (NSUInteger)numberOfSections{
+   return  _daysDataList.count;
+}
+
+- (NSUInteger)numberOfRowsInSection:(NSUInteger)section{
+    
+    YYLatestNewsBO *newsBO = _daysDataList[section];
+    return newsBO.storiesArray.count;
+}
+
+- (NSString *)titleForSection:(NSInteger)section{
+    YYLatestNewsBO *newsBO = _daysDataList[section];
+    return transformDateStr(newsBO.date);
+}
+
+- (YYSingleNewsBO *)newsAtIndexPath:(NSIndexPath *)indexPath{
+    YYLatestNewsBO *newsBO = _daysDataList[indexPath.section];
+    YYSingleNewsBO *singleBO = newsBO.storiesArray[indexPath.row];
+    return singleBO;
+}
+
 
 
 @end

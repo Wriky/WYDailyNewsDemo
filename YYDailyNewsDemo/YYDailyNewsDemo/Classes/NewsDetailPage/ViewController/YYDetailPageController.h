@@ -1,5 +1,5 @@
 //
-//  YYWebViewController.h
+//  YYDetailPageController.h
 //  YYDailyNewsDemo
 //
 //  Created by yyapple on 15/12/28.
@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "YYSingleNewsBO.h"
+#import "YYWebView.h"
 
-@interface YYWebViewController : UIViewController
+@interface YYDetailPageController : UIViewController
 
 
 @property (nonatomic, strong)YYSingleNewsBO *singleNewsBO;
-
+@property (nonatomic, strong)YYWebView *txtWebView;
 @end
